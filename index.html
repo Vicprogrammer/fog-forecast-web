@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>南竿起霧預報</title>
+  <meta name="description" content="馬祖南竿機場逐時起霧／低能見度風險預報。">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#07182a">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- iOS 安裝支援 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="起霧預報">
+  <link rel="apple-touch-icon" href="icons/apple-touch-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-icon" src="icons/icon-192.png" alt="" width="28" height="28">
+        <div class="brand-text">
+          <h1>南竿起霧預報</h1>
+          <span class="brand-sub" id="airport">—</span>
+        </div>
+      </div>
+      <button class="refresh" id="refresh" type="button" aria-label="重新整理">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="currentColor" d="M12 5V2L8 6l4 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- 狀態橫幅（離線／過期／錯誤） -->
+    <div class="banner" id="banner" hidden></div>
+
+    <main id="main" aria-live="polite">
+
+      <!-- 今日總風險 -->
+      <section class="hero card" id="hero" hidden>
+        <div class="hero-meta">
+          <span class="date" id="date">—</span>
+          <span class="season-badge" id="season"></span>
+        </div>
+        <div class="gauge" id="gauge">
+          <div class="gauge-num"><span id="heroProb">—</span><span class="pct">%</span></div>
+          <div class="gauge-label" id="heroLabel">—</div>
+        </div>
+        <p class="hero-advice" id="heroAdvice">—</p>
+      </section>
+
+      <!-- 逐時段預報 -->
+      <section class="slots" id="slotsWrap" hidden>
+        <h2 class="section-title">逐時段風險</h2>
+        <div class="slot-list" id="slots"></div>
+      </section>
+
+      <!-- 氣象條件 -->
+      <section class="conditions card" id="condWrap" hidden>
+        <h2 class="section-title">氣象條件</h2>
+        <div class="cond-grid" id="conditions"></div>
+      </section>
+
+      <!-- 近日趨勢 -->
+      <section class="trend card" id="trendWrap" hidden>
+        <h2 class="section-title">近日趨勢（最高機率）</h2>
+        <div class="trend-chart" id="trend"></div>
+      </section>
+
+      <!-- 載入骨架 -->
+      <section class="loading" id="loading">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>載入預報資料…</p>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <p id="footInfo">—</p>
+      <p class="foot-note" id="footNote"></p>
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

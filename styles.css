@@ -1,0 +1,216 @@
+/* ── 設計系統 ──────────────────────────────────────────── */
+:root {
+  --bg: #07182a;
+  --bg-grad-top: #0e3350;
+  --surface: #0f2740;
+  --surface-2: #16324f;
+  --line: #24425f;
+  --text: #eaf1f7;
+  --text-dim: #9db4c8;
+  --text-faint: #6c869d;
+
+  /* 風險色階 */
+  --risk-low: #33c9a3;
+  --risk-mid: #f2b13c;
+  --risk-high: #f2604a;
+
+  --radius: 16px;
+  --gap: 14px;
+  --maxw: 560px;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #eef4f8;
+    --bg-grad-top: #dbe8f1;
+    --surface: #ffffff;
+    --surface-2: #f2f7fa;
+    --line: #d7e2ea;
+    --text: #10222f;
+    --text-dim: #4a6377;
+    --text-faint: #7b93a5;
+    --risk-low: #14a37f;
+    --risk-mid: #d18a12;
+    --risk-high: #d8412c;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+    "PingFang TC", "Microsoft JhengHei", Roboto, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(120% 60% at 50% -10%, var(--bg-grad-top) 0%, transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding:
+    calc(var(--safe-top) + 12px)
+    16px
+    calc(var(--safe-bottom) + 24px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.section-title {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+/* ── Topbar ─────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon { border-radius: 8px; display: block; }
+.brand-text h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: .01em; }
+.brand-sub { font-size: .8rem; color: var(--text-dim); }
+.refresh {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: transform .2s, color .2s, border-color .2s;
+}
+.refresh:hover { color: var(--text); border-color: var(--text-faint); }
+.refresh:active { transform: scale(.92); }
+.refresh.spin svg { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Banner ─────────────────────────────────────────────── */
+.banner {
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: .85rem;
+  margin-bottom: var(--gap);
+  border: 1px solid transparent;
+}
+.banner.warn { background: color-mix(in srgb, var(--risk-mid) 16%, var(--surface)); border-color: color-mix(in srgb, var(--risk-mid) 40%, transparent); color: var(--text); }
+.banner.error { background: color-mix(in srgb, var(--risk-high) 16%, var(--surface)); border-color: color-mix(in srgb, var(--risk-high) 40%, transparent); color: var(--text); }
+.banner.info { background: var(--surface-2); border-color: var(--line); color: var(--text-dim); }
+
+main { flex: 1; display: flex; flex-direction: column; gap: var(--gap); }
+
+/* ── Hero 儀表 ──────────────────────────────────────────── */
+.hero { text-align: center; }
+.hero-meta {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-bottom: 6px;
+}
+.date { font-size: .95rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.season-badge {
+  font-size: .72rem; font-weight: 600;
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--text-dim);
+}
+.season-badge.in { background: color-mix(in srgb, var(--risk-mid) 20%, transparent); color: var(--risk-mid); border-color: transparent; }
+
+.gauge {
+  --p: 0;               /* 0..100，由 JS 設 */
+  --c: var(--risk-low); /* 風險色，由 JS 設 */
+  width: 180px; height: 180px;
+  margin: 12px auto 8px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(closest-side, var(--surface) 74%, transparent 75% 100%),
+    conic-gradient(var(--c) calc(var(--p) * 1%), var(--line) 0);
+  transition: --p .6s ease;
+}
+.gauge-num { font-size: 3.1rem; font-weight: 800; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+.gauge-num .pct { font-size: 1.3rem; font-weight: 600; margin-left: 2px; }
+.gauge-label { margin-top: 4px; font-size: .95rem; font-weight: 700; color: var(--c); letter-spacing: .04em; }
+.hero-advice { margin-top: 10px; font-size: .92rem; color: var(--text-dim); }
+
+/* ── 時段列表 ───────────────────────────────────────────── */
+.slot-list { display: flex; flex-direction: column; gap: 10px; }
+.slot {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+.slot-time { font-size: 1.05rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 3.4em; }
+.slot-mid { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.slot-bar { height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.slot-bar > span { display: block; height: 100%; border-radius: 999px; background: var(--c, var(--risk-low)); width: 0; transition: width .6s ease; }
+.slot-vis { font-size: .78rem; color: var(--text-faint); }
+.slot-right { text-align: right; }
+.slot-prob { font-size: 1.25rem; font-weight: 800; color: var(--c, var(--risk-low)); font-variant-numeric: tabular-nums; }
+.slot-tag { font-size: .72rem; font-weight: 600; color: var(--c, var(--risk-low)); }
+
+/* ── 氣象條件 ───────────────────────────────────────────── */
+.cond-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.cond {
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.cond-label { font-size: .74rem; color: var(--text-faint); }
+.cond-val { font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.cond-val small { font-size: .72rem; font-weight: 500; color: var(--text-dim); margin-left: 3px; }
+.cond-hint { font-size: .7rem; color: var(--text-faint); margin-top: 3px; }
+
+/* ── 趨勢 ───────────────────────────────────────────────── */
+.trend-chart { display: flex; align-items: flex-end; gap: 8px; height: 96px; padding-top: 8px; }
+.trend-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.trend-bar-wrap { width: 100%; flex: 1; display: flex; align-items: flex-end; }
+.trend-bar { width: 100%; border-radius: 6px 6px 0 0; background: var(--c, var(--risk-low)); min-height: 3px; transition: height .5s ease; }
+.trend-day { font-size: .68rem; color: var(--text-faint); white-space: nowrap; }
+.trend-val { font-size: .7rem; font-weight: 700; color: var(--text-dim); }
+
+/* ── 載入骨架 ───────────────────────────────────────────── */
+.loading { text-align: center; color: var(--text-dim); padding: 40px 0; }
+.spinner {
+  width: 34px; height: 34px; margin: 0 auto 12px;
+  border: 3px solid var(--line);
+  border-top-color: var(--risk-low);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.foot { margin-top: 18px; text-align: center; color: var(--text-faint); font-size: .75rem; }
+.foot-note { margin-top: 4px; }
+
+@property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
