@@ -1,217 +1,253 @@
-/* 南竿起霧預報 PWA — 前端邏輯。
-   資料來源見 config.js。網路優先、離線回退（由 service worker 快取）。 */
 (() => {
   'use strict';
 
   const CFG = window.FOG_CONFIG || {};
   const BANDS = CFG.riskBands || { low: 0.15, high: 0.40 };
   const STALE_H = CFG.staleHours || 30;
-
   const $ = (id) => document.getElementById(id);
+  const state = {
+    airport: localStorage.getItem('fog-airport') === 'nangan' ? 'nangan' : 'beigan',
+    today: null,
+    history: [],
+    observations: null,
+  };
 
-  // ── 風險分級 ──────────────────────────────────────────
-  function risk(prob) {
-    if (prob >= BANDS.high) return { level: '高風險', tag: '高', color: 'var(--risk-high)' };
-    if (prob >= BANDS.low) return { level: '中風險', tag: '中', color: 'var(--risk-mid)' };
+  function risk(value) {
+    if (value >= BANDS.high) return { level: '高風險', tag: '高', color: 'var(--risk-high)' };
+    if (value >= BANDS.low) return { level: '中風險', tag: '中', color: 'var(--risk-mid)' };
     return { level: '低風險', tag: '低', color: 'var(--risk-low)' };
   }
-  const pct = (p) => Math.round(p * 100);
+
+  const pct = (value) => Math.round((value || 0) * 100);
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[char]));
 
-  function advice(prob, inSeason) {
-    const r = risk(prob);
-    if (r.tag === '高') return '起霧／低能見度機率高，班機延誤或取消風險大，請預留備案。';
-    if (r.tag === '中') return '有一定起霧機率，出發前留意最新航班動態。';
-    return inSeason
-      ? '起霧機率低，航班多半正常，仍建議出發前確認。'
-      : '目前非霧季，起霧機率低，航班多半正常。';
-  }
-
-  // ── 時間格式 ──────────────────────────────────────────
   function relTime(iso) {
     if (!iso) return '';
-    const t = new Date(iso).getTime();
-    if (Number.isNaN(t)) return '';
-    const mins = Math.round((Date.now() - t) / 60000);
-    if (mins < 1) return '剛剛';
-    if (mins < 60) return `${mins} 分鐘前`;
-    const h = Math.round(mins / 60);
-    if (h < 24) return `${h} 小時前`;
-    return `${Math.round(h / 24)} 天前`;
+    const timestamp = new Date(iso).getTime();
+    if (Number.isNaN(timestamp)) return '';
+    const minutes = Math.round((Date.now() - timestamp) / 60000);
+    if (minutes < 1) return '剛剛';
+    if (minutes < 60) return `${minutes} 分鐘前`;
+    const hours = Math.round(minutes / 60);
+    if (hours < 24) return `${hours} 小時前`;
+    return `${Math.round(hours / 24)} 天前`;
   }
+
   function isStale(iso) {
-    const t = new Date(iso).getTime();
-    return !Number.isNaN(t) && (Date.now() - t) > STALE_H * 3600 * 1000;
+    const timestamp = new Date(iso).getTime();
+    return !Number.isNaN(timestamp) && Date.now() - timestamp > STALE_H * 3600000;
   }
 
-  // ── Banner ────────────────────────────────────────────
-  function banner(msg, kind) {
-    const el = $('banner');
-    if (!msg) { el.hidden = true; return; }
-    el.className = `banner ${kind || 'info'}`;
-    el.textContent = msg;
-    el.hidden = false;
-  }
-
-  // ── 抓資料 ────────────────────────────────────────────
-  async function fetchJSON(url) {
-    const ctl = new AbortController();
-    const to = setTimeout(() => ctl.abort(), 10000);
-    try {
-      const res = await fetch(url, { signal: ctl.signal, cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
-    } finally {
-      clearTimeout(to);
-    }
-  }
-
-  // ── 渲染 ──────────────────────────────────────────────
-  function renderToday(doc) {
-    $('airport').textContent = doc.airport || '—';
-    $('date').textContent = doc.date || '—';
-
-    const season = $('season');
-    if (doc.in_season) { season.textContent = '霧季'; season.className = 'season-badge in'; }
-    else { season.textContent = '非霧季'; season.className = 'season-badge'; }
-
-    const slots = Array.isArray(doc.slots) ? doc.slots : [];
-    const maxProb = slots.length ? Math.max(...slots.map((s) => s.prob || 0)) : 0;
-    const r = risk(maxProb);
-
-    // Hero 儀表
-    const gauge = $('gauge');
-    gauge.style.setProperty('--c', r.color);
-    // 觸發 conic 動畫：下一幀再設 --p
-    requestAnimationFrame(() => gauge.style.setProperty('--p', pct(maxProb)));
-    $('heroProb').textContent = pct(maxProb);
-    const hl = $('heroLabel'); hl.textContent = r.level; hl.style.color = r.color;
-    $('heroProb').style.color = r.color;
-    $('heroAdvice').textContent = advice(maxProb, doc.in_season);
-    $('hero').hidden = false;
-
-    // 時段
-    const wrap = $('slots');
-    wrap.innerHTML = '';
-    const thr = doc.threshold_km;
-    for (const s of slots) {
-      const sr = risk(s.prob || 0);
-      const el = document.createElement('div');
-      el.className = 'slot';
-      el.style.setProperty('--c', sr.color);
-      const vis = (s.forecast_vis_km != null)
-        ? `預報能見度 ${Number(s.forecast_vis_km).toFixed(1)} km` : '';
-      el.innerHTML = `
-        <div class="slot-time">${s.time || '—'}</div>
-        <div class="slot-mid">
-          <div class="slot-bar"><span style="width:${Math.max(2, pct(s.prob || 0))}%"></span></div>
-          <div class="slot-vis">${vis}</div>
-        </div>
-        <div class="slot-right">
-          <div class="slot-prob">${pct(s.prob || 0)}%</div>
-          <div class="slot-tag">${sr.tag}</div>
-        </div>`;
-      wrap.appendChild(el);
-    }
-    $('slotsWrap').hidden = slots.length === 0;
-
-    // 氣象條件
-    const c = doc.conditions || {};
-    const conds = [
-      { label: '海溫 SST', val: c.sst, unit: '°C', hint: c.sst_source ? `${c.sst_source}｜${c.sst_date || ''}` : '' },
-      { label: '相對濕度', val: c.rh, unit: '%', hint: '越高越易起霧' },
-      { label: '風速', val: c.wind, unit: 'm/s', hint: '' },
-      { label: '露點−海溫', val: c.td_minus_sst, unit: '°C', hint: '接近 0 易凝霧' },
-    ];
-    const cg = $('conditions');
-    cg.innerHTML = '';
-    let anyCond = false;
-    for (const it of conds) {
-      if (it.val == null || Number.isNaN(Number(it.val))) continue;
-      anyCond = true;
-      const el = document.createElement('div');
-      el.className = 'cond';
-      el.innerHTML = `
-        <div class="cond-label">${it.label}</div>
-        <div class="cond-val">${Number(it.val).toFixed(it.unit === '%' ? 0 : 2)}<small>${it.unit}</small></div>
-        ${it.hint ? `<div class="cond-hint">${it.hint}</div>` : ''}`;
-      cg.appendChild(el);
-    }
-    $('condWrap').hidden = !anyCond;
-
-    // Footer
-    const gen = doc.generated_at;
-    $('footInfo').textContent = gen ? `資料更新於 ${relTime(gen)}（${new Date(gen).toLocaleString('zh-TW')}）` : '';
-    $('footNote').textContent = thr
-      ? `風險＝模型估計該時段南竿測站能見度低於 ${thr} km 的機率；不等同機場關場或班機取消機率。`
-      : '';
-
-    renderBeigan(doc.beigan);
-    return { gen };
-  }
-
-  function renderBeigan(doc) {
-    const wrap = $('beiganWrap');
-    const list = $('beiganSlots');
-    const slots = Array.isArray(doc?.slots) ? doc.slots : [];
-    if (!slots.length) {
-      wrap.hidden = true;
+  function banner(message, kind) {
+    const element = $('banner');
+    if (!message) {
+      element.hidden = true;
       return;
     }
-    const calibrated = Boolean(doc.calibrated_probability);
-    $('beiganMethod').textContent = calibrated ? '歷史取消模型' : '氣象風險指數';
-    $('beiganNote').textContent = doc.disclaimer || '';
-    list.innerHTML = '';
-    for (const slot of slots) {
-      const value = calibrated ? slot.probability : slot.risk_score;
-      const sr = risk(value || 0);
-      const el = document.createElement('div');
-      el.className = 'slot';
-      el.style.setProperty('--c', sr.color);
-      const details = [
-        slot.visibility_km != null ? `能見度 ${Number(slot.visibility_km).toFixed(1)} km` : '',
-        slot.cloud_cover_low_pct != null ? `低雲 ${Math.round(slot.cloud_cover_low_pct)}%` : '',
-        slot.dewpoint_spread_c != null ? `溫露差 ${Number(slot.dewpoint_spread_c).toFixed(1)}°C` : '',
-      ].filter(Boolean).join('｜');
-      el.innerHTML = `
-        <div class="slot-time">${esc(slot.time || '—')}</div>
-        <div class="slot-mid">
-          <div class="slot-bar"><span style="width:${Math.max(2, pct(value || 0))}%"></span></div>
-          <div class="slot-vis">${esc(details)}</div>
-        </div>
-        <div class="slot-right">
-          <div class="slot-prob">${pct(value || 0)}%</div>
-          <div class="slot-tag">${sr.tag}</div>
-        </div>`;
-      list.appendChild(el);
-    }
-    wrap.hidden = false;
+    element.className = `banner ${kind || 'info'}`;
+    element.textContent = message;
+    element.hidden = false;
   }
 
-  function renderTrend(history) {
-    const wrap = $('trend');
-    if (!Array.isArray(history) || history.length < 2) { $('trendWrap').hidden = true; return; }
-    const days = history.slice(-7);
-    const maxes = days.map((d) => {
-      const vals = Object.values(d.slots || {});
-      return vals.length ? Math.max(...vals) : 0;
+  async function fetchJSON(url) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    try {
+      const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  function airportView() {
+    const source = state.today || {};
+    if (state.airport === 'beigan') {
+      const beigan = source.beigan || {};
+      const calibrated = Boolean(beigan.calibrated_probability);
+      const slots = Array.isArray(beigan.slots) ? beigan.slots.map((slot) => ({
+        ...slot,
+        value: calibrated ? slot.probability : slot.risk_score,
+        details: [
+          slot.visibility_km != null ? `能見度 ${Number(slot.visibility_km).toFixed(1)} km` : '',
+          slot.cloud_cover_low_pct != null ? `低雲 ${Math.round(slot.cloud_cover_low_pct)}%` : '',
+          slot.dewpoint_spread_c != null ? `溫露差 ${Number(slot.dewpoint_spread_c).toFixed(1)}°C` : '',
+        ].filter(Boolean).join('｜'),
+      })) : [];
+      const representative = slots.reduce(
+        (best, slot) => !best || (slot.value || 0) > (best.value || 0) ? slot : best,
+        null,
+      );
+      return {
+        key: 'beigan',
+        airport: beigan.airport || '北竿 (MFK/RCMT)',
+        date: beigan.date || source.date,
+        inSeason: source.in_season,
+        calibrated,
+        metric: calibrated ? '歷史航班取消機率' : '氣象不適航風險指數',
+        slotsTitle: calibrated ? '北竿逐時段取消風險' : '北竿逐時段氣象風險',
+        slots,
+        conditionsMeta: representative ? `${representative.time} 最高風險時段` : '',
+        conditions: representative ? [
+          { label: '預報能見度', val: representative.visibility_km, unit: 'km', digits: 1, hint: '越低越不利起降' },
+          { label: '相對濕度', val: representative.relative_humidity_pct, unit: '%', digits: 0, hint: '越高越易凝霧' },
+          { label: '風速', val: representative.wind_speed_ms, unit: 'm/s', digits: 1, hint: '' },
+          { label: '低雲量', val: representative.cloud_cover_low_pct, unit: '%', digits: 0, hint: '低雲可能限制進場' },
+          { label: '氣溫', val: representative.temperature_c, unit: '°C', digits: 1, hint: '' },
+          { label: '溫度−露點', val: representative.dewpoint_spread_c, unit: '°C', digits: 1, hint: '接近 0 易凝霧' },
+        ] : [],
+        historyKey: 'beigan_slots',
+        note: beigan.disclaimer || '',
+      };
+    }
+
+    const slots = Array.isArray(source.slots) ? source.slots.map((slot) => ({
+      ...slot,
+      value: slot.prob,
+      details: slot.forecast_vis_km != null
+        ? `預報能見度 ${Number(slot.forecast_vis_km).toFixed(1)} km`
+        : '',
+    })) : [];
+    const conditions = source.conditions || {};
+    return {
+      key: 'nangan',
+      airport: source.airport || '南竿 (LZN/RCFG)',
+      date: source.date,
+      inSeason: source.in_season,
+      calibrated: true,
+      metric: `能見度低於 ${source.threshold_km || 2.4} km 的機率`,
+      slotsTitle: '南竿逐時段低能見度風險',
+      slots,
+      conditionsMeta: '',
+      conditions: [
+        { label: '海溫 SST', val: conditions.sst, unit: '°C', digits: 2, hint: conditions.sst_source ? `${conditions.sst_source}｜${conditions.sst_date || ''}` : '' },
+        { label: '相對濕度', val: conditions.rh, unit: '%', digits: 0, hint: '越高越易凝霧' },
+        { label: '風速', val: conditions.wind, unit: 'm/s', digits: 1, hint: '' },
+        { label: '露點−海溫', val: conditions.td_minus_sst, unit: '°C', digits: 2, hint: '接近 0 易凝霧' },
+      ],
+      historyKey: 'slots',
+      note: `模型估計南竿測站能見度低於 ${source.threshold_km || 2.4} km；不等同機場關場或班機取消機率。`,
+    };
+  }
+
+  function advice(view, value) {
+    const level = risk(value).tag;
+    if (view.key === 'beigan' && !view.calibrated) {
+      if (level === '高') return '氣象條件明顯不利，班機受影響風險高，請預留替代方案。';
+      if (level === '中') return '氣象條件存在不利訊號，請密切確認最新航班動態。';
+      return '目前氣象風險較低，仍請在出發前確認航班狀態。';
+    }
+    if (level === '高') return '低能見度風險高，班機延誤或取消可能性增加，請預留備案。';
+    if (level === '中') return '有一定低能見度風險，出發前請確認最新航班動態。';
+    return view.inSeason
+      ? '低能見度風險較低，仍建議出發前確認航班。'
+      : '目前非主要霧季，低能見度風險較低。';
+  }
+
+  function renderTabs() {
+    document.querySelectorAll('.airport-tab').forEach((tab) => {
+      const active = tab.dataset.airport === state.airport;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
     });
-    const scaleMax = Math.max(0.1, ...maxes);
-    wrap.innerHTML = '';
-    days.forEach((d, i) => {
-      const p = maxes[i];
-      const r = risk(p);
-      const col = document.createElement('div');
-      col.className = 'trend-col';
-      col.style.setProperty('--c', r.color);
-      const md = (d.date || '').slice(5); // MM-DD
-      col.innerHTML = `
-        <div class="trend-val">${pct(p)}%</div>
-        <div class="trend-bar-wrap"><div class="trend-bar" style="height:${Math.max(4, (p / scaleMax) * 100)}%"></div></div>
-        <div class="trend-day">${md}</div>`;
-      wrap.appendChild(col);
+  }
+
+  function renderForecast(view) {
+    $('airport').textContent = view.airport;
+    $('date').textContent = view.date || '—';
+    const season = $('season');
+    season.textContent = view.inSeason ? '霧季' : '非霧季';
+    season.className = view.inSeason ? 'season-badge in' : 'season-badge';
+
+    const maxValue = view.slots.length
+      ? Math.max(...view.slots.map((slot) => slot.value || 0))
+      : 0;
+    const level = risk(maxValue);
+    const gauge = $('gauge');
+    gauge.style.setProperty('--c', level.color);
+    requestAnimationFrame(() => gauge.style.setProperty('--p', pct(maxValue)));
+    $('heroProb').textContent = pct(maxValue);
+    $('heroProb').style.color = level.color;
+    $('heroLabel').textContent = level.level;
+    $('heroLabel').style.color = level.color;
+    $('heroMetric').textContent = view.metric;
+    $('heroAdvice').textContent = advice(view, maxValue);
+    $('hero').hidden = view.slots.length === 0;
+
+    $('slotsTitle').textContent = view.slotsTitle;
+    const list = $('slots');
+    list.innerHTML = '';
+    view.slots.forEach((slot) => {
+      const value = slot.value || 0;
+      const slotRisk = risk(value);
+      const element = document.createElement('div');
+      element.className = 'slot';
+      element.style.setProperty('--c', slotRisk.color);
+      element.innerHTML = `
+        <div class="slot-time">${esc(slot.time || '—')}</div>
+        <div class="slot-mid">
+          <div class="slot-bar"><span style="width:${Math.max(2, pct(value))}%"></span></div>
+          <div class="slot-vis">${esc(slot.details)}</div>
+        </div>
+        <div class="slot-right">
+          <div class="slot-prob">${pct(value)}%</div>
+          <div class="slot-tag">${slotRisk.tag}</div>
+        </div>`;
+      list.appendChild(element);
+    });
+    $('slotsWrap').hidden = view.slots.length === 0;
+  }
+
+  function renderConditions(view) {
+    $('conditionsMeta').textContent = view.conditionsMeta;
+    const grid = $('conditions');
+    grid.innerHTML = '';
+    let count = 0;
+    view.conditions.forEach((condition) => {
+      if (condition.val == null || Number.isNaN(Number(condition.val))) return;
+      count += 1;
+      const element = document.createElement('div');
+      element.className = 'cond';
+      element.innerHTML = `
+        <div class="cond-label">${esc(condition.label)}</div>
+        <div class="cond-val">${Number(condition.val).toFixed(condition.digits)}<small>${esc(condition.unit)}</small></div>
+        ${condition.hint ? `<div class="cond-hint">${esc(condition.hint)}</div>` : ''}`;
+      grid.appendChild(element);
+    });
+    $('condWrap').hidden = count === 0;
+  }
+
+  function renderTrend(view) {
+    const history = Array.isArray(state.history) ? state.history : [];
+    const days = history
+      .map((day) => {
+        const values = Object.values(day[view.historyKey] || {});
+        return values.length ? { date: day.date, value: Math.max(...values) } : null;
+      })
+      .filter(Boolean)
+      .slice(-7);
+    if (days.length < 2) {
+      $('trendWrap').hidden = true;
+      return;
+    }
+    $('trendTitle').textContent = `近日趨勢（${view.metric}最高值）`;
+    const scaleMax = Math.max(0.1, ...days.map((day) => day.value));
+    const chart = $('trend');
+    chart.innerHTML = '';
+    days.forEach((day) => {
+      const level = risk(day.value);
+      const column = document.createElement('div');
+      column.className = 'trend-col';
+      column.style.setProperty('--c', level.color);
+      column.innerHTML = `
+        <div class="trend-val">${pct(day.value)}%</div>
+        <div class="trend-bar-wrap"><div class="trend-bar" style="height:${Math.max(4, day.value / scaleMax * 100)}%"></div></div>
+        <div class="trend-day">${esc((day.date || '').slice(5))}</div>`;
+      chart.appendChild(column);
     });
     $('trendWrap').hidden = false;
   }
@@ -222,91 +258,110 @@
     return names[Math.round(((Number(degrees) % 360) + 360) % 360 / 45) % 8];
   }
 
-  function renderObservations(doc) {
-    const stations = Array.isArray(doc.stations) ? doc.stations : [];
-    const wrap = $('observations');
-    wrap.innerHTML = '';
-    for (const station of stations) {
-      const observed = station.observed_at ? new Date(station.observed_at) : null;
-      const observedText = observed && !Number.isNaN(observed.getTime())
-        ? `${relTime(station.observed_at)}｜${observed.toLocaleString('zh-TW')}`
-        : '暫無觀測資料';
-      const values = [
-        ['溫度', station.temperature_c, '°C', 1],
-        ['相對濕度', station.relative_humidity_pct, '%', 0],
-        ['風速', station.wind_speed_ms, 'm/s', 1],
-        ['風向', station.wind_direction_deg, '°', 0],
-        ['能見度', station.visibility_km, 'km', 1],
-        ['雲幕高度', station.ceiling_ft, 'ft', 0],
-      ];
-      const card = document.createElement('article');
-      card.className = 'observation';
-      const cells = values.map(([label, value, unit, digits]) => {
-        let display = '未提供';
-        if (value != null && !Number.isNaN(Number(value))) {
-          display = `${Number(value).toFixed(digits)}<small>${unit}</small>`;
-          if (label === '風向') display += `<span class="wind-name">${compass(value)}</span>`;
-        }
-        return `<div class="obs-value"><span>${label}</span><strong>${display}</strong></div>`;
-      }).join('');
-      card.innerHTML = `
+  function renderObservation(view) {
+    const stations = Array.isArray(state.observations?.stations)
+      ? state.observations.stations
+      : [];
+    const station = stations.find((item) => item.area === (view.key === 'beigan' ? '北竿' : '南竿'));
+    if (!station) {
+      $('observationsWrap').hidden = true;
+      return;
+    }
+    const observed = station.observed_at ? new Date(station.observed_at) : null;
+    const observedText = observed && !Number.isNaN(observed.getTime())
+      ? `${relTime(station.observed_at)}｜${observed.toLocaleString('zh-TW')}`
+      : '暫無觀測資料';
+    const values = [
+      ['溫度', station.temperature_c, '°C', 1],
+      ['相對濕度', station.relative_humidity_pct, '%', 0],
+      ['風速', station.wind_speed_ms, 'm/s', 1],
+      ['風向', station.wind_direction_deg, '°', 0],
+      ['能見度', station.visibility_km, 'km', 1],
+      ['雲幕高度', station.ceiling_ft, 'ft', 0],
+    ];
+    const cells = values.map(([label, value, unit, digits]) => {
+      let display = '未提供';
+      if (value != null && !Number.isNaN(Number(value))) {
+        display = `${Number(value).toFixed(digits)}<small>${unit}</small>`;
+        if (label === '風向') display += `<span class="wind-name">${compass(value)}</span>`;
+      }
+      return `<div class="obs-value"><span>${label}</span><strong>${display}</strong></div>`;
+    }).join('');
+    $('observations').innerHTML = `
+      <article class="observation">
         <div class="obs-head">
-          <div><strong>${esc(station.area || '—')}</strong><span>${esc(station.station_name)}｜${esc(station.station_id)}</span></div>
-          <time>${observedText}</time>
+          <div><strong>${esc(station.area)}</strong><span>${esc(station.station_name)}｜${esc(station.station_id)}</span></div>
+          <time>${esc(observedText)}</time>
         </div>
         <div class="obs-values">${cells}</div>
         ${station.weather ? `<p class="observation-source">現象：${esc(station.weather)}</p>` : ''}
         ${station.flight_weather_allowed === false
-          ? '<p class="observation-source">航空氣象網判定低於適航天氣條件；不等同機場已關場。</p>' : ''}`;
-      wrap.appendChild(card);
-    }
-    $('observationsUpdated').textContent = doc.generated_at
-      ? `抓取於 ${relTime(doc.generated_at)}` : '';
-    $('observationsSource').textContent = doc.source ? `資料來源：${doc.source}` : '';
-    $('observationsWrap').hidden = stations.length === 0;
+          ? '<p class="observation-source">航空氣象網判定低於適航天氣條件；不等同機場已關場。</p>'
+          : ''}
+      </article>`;
+    $('observationsUpdated').textContent = state.observations.generated_at
+      ? `抓取於 ${relTime(state.observations.generated_at)}`
+      : '';
+    $('observationsSource').textContent = state.observations.source
+      ? `資料來源：${state.observations.source}`
+      : '';
+    $('observationsWrap').hidden = false;
   }
 
-  // ── 主載入流程 ────────────────────────────────────────
+  function render() {
+    if (!state.today) return;
+    const view = airportView();
+    renderTabs();
+    renderForecast(view);
+    renderObservation(view);
+    renderConditions(view);
+    renderTrend(view);
+    const generated = state.today.generated_at;
+    $('footInfo').textContent = generated
+      ? `資料更新於 ${relTime(generated)}（${new Date(generated).toLocaleString('zh-TW')}）`
+      : '';
+    $('footNote').textContent = view.note;
+  }
+
   let loading = false;
   async function load() {
     if (loading) return;
     loading = true;
     $('refresh').classList.add('spin');
     try {
-      const today = await fetchJSON(CFG.todayUrl || 'today.json');
+      state.today = await fetchJSON(CFG.todayUrl || 'today.json');
       $('loading').hidden = true;
-      const { gen } = renderToday(today);
-
-      // 過期／離線提醒
-      if (!navigator.onLine) banner('目前離線，顯示的是最後一次快取的預報。', 'info');
-      else if (gen && isStale(gen)) banner('這份預報可能已過期（超過 30 小時未更新）。', 'warn');
+      const optional = await Promise.allSettled([
+        fetchJSON(CFG.historyUrl || 'history.json'),
+        fetchJSON(CFG.observationsUrl || 'observations.json'),
+      ]);
+      state.history = optional[0].status === 'fulfilled' ? optional[0].value : [];
+      state.observations = optional[1].status === 'fulfilled' ? optional[1].value : null;
+      render();
+      if (!navigator.onLine) banner('目前離線，顯示的是最後一次快取資料。', 'info');
+      else if (isStale(state.today.generated_at)) banner('這份預報可能已過期（超過30小時未更新）。', 'warn');
       else banner('');
-
-      // history 為選配，失敗不影響主畫面
-      try {
-        const hist = await fetchJSON(CFG.historyUrl || 'history.json');
-        renderTrend(hist);
-      } catch (_) { $('trendWrap').hidden = true; }
-
-      try {
-        const observations = await fetchJSON(CFG.observationsUrl || 'observations.json');
-        renderObservations(observations);
-      } catch (_) { $('observationsWrap').hidden = true; }
-
-    } catch (err) {
+    } catch (error) {
       $('loading').hidden = true;
-      if (!navigator.onLine) {
-        banner('目前離線，且沒有可用的快取資料。請連線後重試。', 'error');
-      } else {
-        banner(`無法載入預報資料（${err.message}）。稍後重試。`, 'error');
-      }
+      banner(
+        navigator.onLine
+          ? `無法載入預報資料（${error.message}）。稍後重試。`
+          : '目前離線，且沒有可用的快取資料。',
+        'error',
+      );
     } finally {
       loading = false;
       $('refresh').classList.remove('spin');
     }
   }
 
-  // ── 事件 ──────────────────────────────────────────────
+  document.querySelectorAll('.airport-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      state.airport = tab.dataset.airport;
+      localStorage.setItem('fog-airport', state.airport);
+      render();
+    });
+  });
   $('refresh').addEventListener('click', load);
   window.addEventListener('online', load);
   window.addEventListener('offline', () => banner('已離線。', 'info'));
@@ -314,12 +369,12 @@
     if (document.visibilityState === 'visible') load();
   });
 
-  // ── Service worker ────────────────────────────────────
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js').catch(() => {});
     });
   }
 
+  renderTabs();
   load();
 })();

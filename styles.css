@@ -121,6 +121,39 @@ body {
 .banner.error { background: color-mix(in srgb, var(--risk-high) 16%, var(--surface)); border-color: color-mix(in srgb, var(--risk-high) 40%, transparent); color: var(--text); }
 .banner.info { background: var(--surface-2); border-color: var(--line); color: var(--text-dim); }
 
+.airport-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: var(--gap);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.airport-tab {
+  min-height: 42px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
+}
+.airport-tab:hover { color: var(--text); }
+.airport-tab:active { transform: scale(.98); }
+.airport-tab.active {
+  color: var(--text);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.airport-tab:focus-visible {
+  outline: 2px solid var(--risk-low);
+  outline-offset: 2px;
+}
+
 main { flex: 1; display: flex; flex-direction: column; gap: var(--gap); }
 
 /* ── Hero 儀表 ──────────────────────────────────────────── */
@@ -152,6 +185,7 @@ main { flex: 1; display: flex; flex-direction: column; gap: var(--gap); }
 .gauge-num { font-size: 3.1rem; font-weight: 800; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
 .gauge-num .pct { font-size: 1.3rem; font-weight: 600; margin-left: 2px; }
 .gauge-label { margin-top: 4px; font-size: .95rem; font-weight: 700; color: var(--c); letter-spacing: .04em; }
+.hero-metric { color: var(--text-faint); font-size: .75rem; }
 .hero-advice { margin-top: 10px; font-size: .92rem; color: var(--text-dim); }
 
 /* ── 時段列表 ───────────────────────────────────────────── */

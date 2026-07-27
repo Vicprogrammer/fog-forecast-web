@@ -1,6 +1,6 @@
 /* Service worker：App shell 快取優先、資料網路優先（離線回退最後一次快取）。
    改動任何 shell 檔案時，把 VERSION 加一，使用者下次開啟即自動更新。 */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL_CACHE = `fog-shell-${VERSION}`;
 const DATA_CACHE = `fog-data-${VERSION}`;
 

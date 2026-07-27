@@ -1,6 +1,6 @@
 {
  "date": "2026-07-27",
- "generated_at": "2026-07-27T10:44:00+08:00",
+ "generated_at": "2026-07-27T12:40:41+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 2.4,
  "in_season": false,
@@ -37,6 +37,8 @@
   "slots": [
    {
     "time": "06:00",
+    "temperature_c": 27.4,
+    "dewpoint_c": 25.4,
     "visibility_km": 16.66,
     "dewpoint_spread_c": 2.0,
     "relative_humidity_pct": 89.0,
@@ -46,6 +48,8 @@
    },
    {
     "time": "09:00",
+    "temperature_c": 27.5,
+    "dewpoint_c": 25.2,
     "visibility_km": 16.66,
     "dewpoint_spread_c": 2.3,
     "relative_humidity_pct": 87.0,
@@ -55,6 +59,8 @@
    },
    {
     "time": "12:00",
+    "temperature_c": 27.4,
+    "dewpoint_c": 24.7,
     "visibility_km": 18.76,
     "dewpoint_spread_c": 2.7,
     "relative_humidity_pct": 85.0,
@@ -64,6 +70,8 @@
    },
    {
     "time": "15:00",
+    "temperature_c": 26.9,
+    "dewpoint_c": 24.2,
     "visibility_km": 5.06,
     "dewpoint_spread_c": 2.7,
     "relative_humidity_pct": 85.0,
@@ -73,6 +81,8 @@
    },
    {
     "time": "18:00",
+    "temperature_c": 27.6,
+    "dewpoint_c": 24.3,
     "visibility_km": 17.72,
     "dewpoint_spread_c": 3.3,
     "relative_humidity_pct": 82.0,

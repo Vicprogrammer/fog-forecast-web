@@ -41,6 +41,13 @@
     <!-- 狀態橫幅（離線／過期／錯誤） -->
     <div class="banner" id="banner" hidden></div>
 
+    <nav class="airport-tabs" role="tablist" aria-label="選擇機場">
+      <button class="airport-tab active" id="tab-beigan" type="button" role="tab"
+              aria-selected="true" data-airport="beigan">北竿</button>
+      <button class="airport-tab" id="tab-nangan" type="button" role="tab"
+              aria-selected="false" data-airport="nangan">南竿</button>
+    </nav>
+
     <main id="main" aria-live="polite">
 
       <!-- 今日總風險 -->
@@ -53,22 +60,14 @@
           <div class="gauge-num"><span id="heroProb">—</span><span class="pct">%</span></div>
           <div class="gauge-label" id="heroLabel">—</div>
         </div>
+        <p class="hero-metric" id="heroMetric">—</p>
         <p class="hero-advice" id="heroAdvice">—</p>
       </section>
 
       <!-- 逐時段預報 -->
       <section class="slots" id="slotsWrap" hidden>
-        <h2 class="section-title">南竿逐時段低能見度風險</h2>
+        <h2 class="section-title" id="slotsTitle">逐時段風險</h2>
         <div class="slot-list" id="slots"></div>
-      </section>
-
-      <section class="slots card" id="beiganWrap" hidden>
-        <div class="section-heading">
-          <h2 class="section-title">北竿不適航風險</h2>
-          <span class="section-meta" id="beiganMethod"></span>
-        </div>
-        <div class="slot-list" id="beiganSlots"></div>
-        <p class="observation-source" id="beiganNote"></p>
       </section>
 
       <section class="observations card" id="observationsWrap" hidden>
@@ -82,13 +81,16 @@
 
       <!-- 氣象條件 -->
       <section class="conditions card" id="condWrap" hidden>
-        <h2 class="section-title">氣象條件</h2>
+        <div class="section-heading">
+          <h2 class="section-title">氣象條件</h2>
+          <span class="section-meta" id="conditionsMeta"></span>
+        </div>
         <div class="cond-grid" id="conditions"></div>
       </section>
 
       <!-- 近日趨勢 -->
       <section class="trend card" id="trendWrap" hidden>
-        <h2 class="section-title">近日趨勢（最高機率）</h2>
+        <h2 class="section-title" id="trendTitle">近日趨勢（最高風險）</h2>
         <div class="trend-chart" id="trend"></div>
       </section>
 
