@@ -145,7 +145,7 @@
     const gen = doc.generated_at;
     $('footInfo').textContent = gen ? `資料更新於 ${relTime(gen)}（${new Date(gen).toLocaleString('zh-TW')}）` : '';
     $('footNote').textContent = thr
-      ? `風險＝該時段能見度低於 ${thr} km（起霧標準）之機率。`
+      ? `風險＝模型估計該時段南竿測站能見度低於 ${thr} km 的機率；不等同機場關場或班機取消機率。`
       : '';
 
     return { gen };
