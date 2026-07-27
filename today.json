@@ -1,32 +1,32 @@
 {
- "date": "2026-07-26",
- "generated_at": "2026-07-26T17:26:35+08:00",
+ "date": "2026-07-27",
+ "generated_at": "2026-07-27T09:37:03+08:00",
  "airport": "南竿 (LZN/RCFN)",
  "threshold_km": 2.4,
  "in_season": false,
  "slots": [
   {
    "time": "07:40",
-   "prob": 0.1392,
-   "forecast_vis_km": 7.8
+   "prob": 0.1515,
+   "forecast_vis_km": 16.5
   },
   {
    "time": "14:20",
-   "prob": 0.1248,
-   "forecast_vis_km": 21.7
+   "prob": 0.1335,
+   "forecast_vis_km": 4.3
   },
   {
    "time": "16:15",
-   "prob": 0.1242,
-   "forecast_vis_km": 16.6
+   "prob": 0.1078,
+   "forecast_vis_km": 15.4
   }
  ],
  "conditions": {
   "sst": 27.79,
   "sst_date": "2026-07-25",
   "sst_source": "OSTIA",
-  "rh": 89.43,
-  "wind": 3.39,
-  "td_minus_sst": -1.88
+  "rh": 89.86,
+  "wind": 2.71,
+  "td_minus_sst": -2.06
  }
 }
