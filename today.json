@@ -1,63 +1,63 @@
 {
  "date": "2026-07-27",
- "generated_at": "2026-07-27T13:08:52+08:00",
+ "generated_at": "2026-07-27T13:55:04+08:00",
  "airport": "南竿 (LZN/RCFG)",
- "threshold_km": 2.4,
+ "threshold_km": 3.2,
  "in_season": false,
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.1515,
+   "prob": 0.2122,
    "forecast_vis_km": 16.5
   },
   {
    "time": "08:20",
-   "prob": 0.1515,
+   "prob": 0.2122,
    "forecast_vis_km": 16.5
   },
   {
    "time": "10:25",
-   "prob": 0.1119,
+   "prob": 0.1628,
    "forecast_vis_km": 18.7
   },
   {
    "time": "11:15",
-   "prob": 0.1119,
+   "prob": 0.1628,
    "forecast_vis_km": 18.7
   },
   {
    "time": "11:25",
-   "prob": 0.1119,
+   "prob": 0.1628,
    "forecast_vis_km": 18.7
   },
   {
    "time": "12:25",
-   "prob": 0.1119,
+   "prob": 0.1628,
    "forecast_vis_km": 18.7
   },
   {
    "time": "13:10",
-   "prob": 0.1335,
+   "prob": 0.192,
    "forecast_vis_km": 4.3
   },
   {
    "time": "13:20",
-   "prob": 0.1335,
+   "prob": 0.192,
    "forecast_vis_km": 4.3
   },
   {
    "time": "15:05",
-   "prob": 0.1335,
+   "prob": 0.192,
    "forecast_vis_km": 4.3
   },
   {
    "time": "16:05",
-   "prob": 0.1078,
+   "prob": 0.147,
    "forecast_vis_km": 15.4
   },
   {
    "time": "17:00",
-   "prob": 0.1078,
+   "prob": 0.147,
    "forecast_vis_km": 15.4
   }
  ],

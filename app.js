@@ -63,6 +63,28 @@
     }
   }
 
+  function flightAt(area, time) {
+    const flights = Array.isArray(state.observations?.flights)
+      ? state.observations.flights
+      : [];
+    return flights.find((flight) => flight.area === area && flight.time === time) || null;
+  }
+
+  function airportObservation(area) {
+    const stations = Array.isArray(state.observations?.stations)
+      ? state.observations.stations
+      : [];
+    return stations.find((station) => station.area === area) || null;
+  }
+
+  function isNearTerm(date, time) {
+    if (!date || !time) return false;
+    const timestamp = new Date(`${date}T${time}:00+08:00`).getTime();
+    if (Number.isNaN(timestamp)) return false;
+    const minutes = (timestamp - Date.now()) / 60000;
+    return minutes >= -30 && minutes <= 120;
+  }
+
   function airportView() {
     const source = state.today || {};
     if (state.airport === 'beigan') {
@@ -71,7 +93,11 @@
       const slots = Array.isArray(beigan.slots) ? beigan.slots.map((slot) => ({
         ...slot,
         value: calibrated ? slot.probability : slot.risk_score,
+        flight: flightAt('北竿', slot.time),
         details: [
+          flightAt('北竿', slot.time)
+            ? `官方：${flightAt('北竿', slot.time).flight_number} ${flightAt('北竿', slot.time).status}`
+            : '',
           slot.visibility_km != null ? `能見度 ${Number(slot.visibility_km).toFixed(1)} km` : '',
           slot.cloud_cover_low_pct != null ? `低雲 ${Math.round(slot.cloud_cover_low_pct)}%` : '',
           slot.dewpoint_spread_c != null ? `溫露差 ${Number(slot.dewpoint_spread_c).toFixed(1)}°C` : '',
@@ -87,6 +113,7 @@
         date: beigan.date || source.date,
         inSeason: source.in_season,
         calibrated,
+        observedUnsafe: airportObservation('北竿')?.flight_weather_allowed === false,
         metric: '關場預測機率（僅供參考）',
         slotsTitle: '北竿逐時段關場預測機率',
         slots,
@@ -100,16 +127,22 @@
           { label: '溫度−露點', val: representative.dewpoint_spread_c, unit: '°C', digits: 1, hint: '接近 0 易凝霧' },
         ] : [],
         historyKey: 'beigan_slots',
-        note: beigan.disclaimer || '模型依氣象條件推估關場風險，僅供參考；不是機場官方關場決策或公告。',
+        note: beigan.disclaimer || '模型依氣象條件推估關場風險，僅供參考；官方航班狀態與機場實況優先，本站不是機場官方關場決策或公告。',
       };
     }
 
     const slots = Array.isArray(source.slots) ? source.slots.map((slot) => ({
       ...slot,
       value: slot.prob,
-      details: slot.forecast_vis_km != null
-        ? `預報能見度 ${Number(slot.forecast_vis_km).toFixed(1)} km`
-        : '',
+      flight: flightAt('南竿', slot.time),
+      details: [
+        flightAt('南竿', slot.time)
+          ? `官方：${flightAt('南竿', slot.time).flight_number} ${flightAt('南竿', slot.time).status}`
+          : '',
+        slot.forecast_vis_km != null
+          ? `預報能見度 ${Number(slot.forecast_vis_km).toFixed(1)} km`
+          : '',
+      ].filter(Boolean).join('｜'),
     })) : [];
     const conditions = source.conditions || {};
     return {
@@ -118,6 +151,7 @@
       date: source.date,
       inSeason: source.in_season,
       calibrated: true,
+      observedUnsafe: airportObservation('南竿')?.flight_weather_allowed === false,
       metric: '關場預測機率（僅供參考）',
       slotsTitle: '南竿逐時段關場預測機率',
       slots,
@@ -129,7 +163,7 @@
         { label: '露點−海溫', val: conditions.td_minus_sst, unit: '°C', digits: 2, hint: '接近 0 易凝霧' },
       ],
       historyKey: 'slots',
-      note: '模型以低能見度等氣象條件推估關場風險，尚未以官方關場紀錄充分校準，僅供參考；不是機場官方關場決策或公告。',
+      note: '模型以低能見度等氣象條件推估關場風險，真實預報回測尚未達上線標準，數值僅供實驗性參考；官方航班狀態與機場實況優先，本站不是機場官方關場決策或公告。',
     };
   }
 
@@ -167,15 +201,40 @@
       ? Math.max(...view.slots.map((slot) => slot.value || 0))
       : 0;
     const level = risk(maxValue);
+    const cancelled = view.slots.find((slot) => slot.flight?.status_code === 'cancelled');
     const gauge = $('gauge');
-    gauge.style.setProperty('--c', level.color);
-    requestAnimationFrame(() => gauge.style.setProperty('--p', pct(maxValue)));
-    $('heroProb').textContent = pct(maxValue);
-    $('heroProb').style.color = level.color;
-    $('heroLabel').textContent = level.level;
-    $('heroLabel').style.color = level.color;
-    $('heroMetric').textContent = view.metric;
-    $('heroAdvice').textContent = advice(view, maxValue);
+    const percent = gauge.querySelector('.pct');
+    if (cancelled) {
+      gauge.style.setProperty('--c', 'var(--risk-high)');
+      gauge.style.setProperty('--p', 100);
+      $('heroProb').textContent = '取消';
+      $('heroProb').style.color = 'var(--risk-high)';
+      $('heroLabel').textContent = '官方航班狀態';
+      $('heroLabel').style.color = 'var(--risk-high)';
+      $('heroMetric').textContent = `${cancelled.time} ${cancelled.flight.flight_number} 已取消`;
+      $('heroAdvice').textContent = '官方狀態已取代該時段的事前預測；其他班次請繼續確認最新動態。';
+      percent.hidden = true;
+    } else if (view.observedUnsafe) {
+      gauge.style.setProperty('--c', 'var(--risk-high)');
+      gauge.style.setProperty('--p', 100);
+      $('heroProb').textContent = '不適航';
+      $('heroProb').style.color = 'var(--risk-high)';
+      $('heroLabel').textContent = '機場即時觀測';
+      $('heroLabel').style.color = 'var(--risk-high)';
+      $('heroMetric').textContent = '目前低於航空氣象網適航天氣條件';
+      $('heroAdvice').textContent = '這是即時實況，不是模型推測；近期航班請立即確認最新狀態。';
+      percent.hidden = true;
+    } else {
+      gauge.style.setProperty('--c', level.color);
+      requestAnimationFrame(() => gauge.style.setProperty('--p', pct(maxValue)));
+      $('heroProb').textContent = pct(maxValue);
+      $('heroProb').style.color = level.color;
+      $('heroLabel').textContent = level.level;
+      $('heroLabel').style.color = level.color;
+      $('heroMetric').textContent = view.metric;
+      $('heroAdvice').textContent = advice(view, maxValue);
+      percent.hidden = false;
+    }
     $('hero').hidden = view.slots.length === 0;
 
     $('slotsTitle').textContent = view.slotsTitle;
@@ -184,6 +243,16 @@
     view.slots.forEach((slot) => {
       const value = slot.value || 0;
       const slotRisk = risk(value);
+      const official = {
+        cancelled: ['已取消', '官方'],
+        arrived: ['已到', '官方'],
+        delayed: ['延誤', '官方'],
+        departed: ['已飛', '官方'],
+      }[slot.flight?.status_code];
+      const observedUnsafe = view.observedUnsafe && isNearTerm(view.date, slot.time)
+        ? ['不適航', '實況']
+        : null;
+      const display = official || observedUnsafe;
       const element = document.createElement('div');
       element.className = 'slot';
       element.style.setProperty('--c', slotRisk.color);
@@ -194,8 +263,8 @@
           <div class="slot-vis">${esc(slot.details)}</div>
         </div>
         <div class="slot-right">
-          <div class="slot-prob">${pct(value)}%</div>
-          <div class="slot-tag">${slotRisk.tag}</div>
+          <div class="slot-prob">${display ? display[0] : `${pct(value)}%`}</div>
+          <div class="slot-tag">${display ? display[1] : slotRisk.tag}</div>
         </div>`;
       list.appendChild(element);
     });
