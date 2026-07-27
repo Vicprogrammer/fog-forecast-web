@@ -1,7 +1,7 @@
 {
   "name": "馬祖機場霧況預報",
   "short_name": "起霧預報",
-  "description": "馬祖南竿與北竿機場逐時起霧／低能見度風險預報。",
+  "description": "馬祖南竿與北竿機場逐時關場風險預測，模型結果僅供參考。",
   "lang": "zh-Hant",
   "dir": "ltr",
   "start_url": "./index.html",

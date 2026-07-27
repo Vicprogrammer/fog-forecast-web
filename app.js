@@ -87,8 +87,8 @@
         date: beigan.date || source.date,
         inSeason: source.in_season,
         calibrated,
-        metric: calibrated ? '歷史航班取消機率' : '氣象不適航風險指數',
-        slotsTitle: calibrated ? '北竿逐時段取消風險' : '北竿逐時段氣象風險',
+        metric: '關場預測機率（僅供參考）',
+        slotsTitle: '北竿逐時段關場預測機率',
         slots,
         conditionsMeta: representative ? `${representative.time} 最高風險時段` : '',
         conditions: representative ? [
@@ -100,7 +100,7 @@
           { label: '溫度−露點', val: representative.dewpoint_spread_c, unit: '°C', digits: 1, hint: '接近 0 易凝霧' },
         ] : [],
         historyKey: 'beigan_slots',
-        note: beigan.disclaimer || '',
+        note: beigan.disclaimer || '模型依氣象條件推估關場風險，僅供參考；不是機場官方關場決策或公告。',
       };
     }
 
@@ -118,8 +118,8 @@
       date: source.date,
       inSeason: source.in_season,
       calibrated: true,
-      metric: `能見度低於 ${source.threshold_km || 2.4} km 的機率`,
-      slotsTitle: '南竿逐時段低能見度風險',
+      metric: '關場預測機率（僅供參考）',
+      slotsTitle: '南竿逐時段關場預測機率',
       slots,
       conditionsMeta: '',
       conditions: [
@@ -129,22 +129,22 @@
         { label: '露點−海溫', val: conditions.td_minus_sst, unit: '°C', digits: 2, hint: '接近 0 易凝霧' },
       ],
       historyKey: 'slots',
-      note: `模型估計南竿測站能見度低於 ${source.threshold_km || 2.4} km；不等同機場關場或班機取消機率。`,
+      note: '模型以低能見度等氣象條件推估關場風險，尚未以官方關場紀錄充分校準，僅供參考；不是機場官方關場決策或公告。',
     };
   }
 
   function advice(view, value) {
     const level = risk(value).tag;
     if (view.key === 'beigan' && !view.calibrated) {
-      if (level === '高') return '氣象條件明顯不利，班機受影響風險高，請預留替代方案。';
-      if (level === '中') return '氣象條件存在不利訊號，請密切確認最新航班動態。';
-      return '目前氣象風險較低，仍請在出發前確認航班狀態。';
+      if (level === '高') return '關場風險偏高，請確認航班狀態並預留替代方案。';
+      if (level === '中') return '有一定關場風險，請密切確認最新航班動態。';
+      return '目前關場風險較低，仍請在出發前確認航班狀態。';
     }
-    if (level === '高') return '低能見度風險高，班機延誤或取消可能性增加，請預留備案。';
-    if (level === '中') return '有一定低能見度風險，出發前請確認最新航班動態。';
+    if (level === '高') return '關場風險偏高，請確認航班狀態並預留替代方案。';
+    if (level === '中') return '有一定關場風險，出發前請確認最新航班動態。';
     return view.inSeason
-      ? '低能見度風險較低，仍建議出發前確認航班。'
-      : '目前非主要霧季，低能見度風險較低。';
+      ? '目前關場風險較低，仍建議出發前確認航班。'
+      : '目前非主要霧季，關場風險較低。';
   }
 
   function renderTabs() {
