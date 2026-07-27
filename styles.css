@@ -175,6 +175,25 @@ main { flex: 1; display: flex; flex-direction: column; gap: var(--gap); }
 .slot-prob { font-size: 1.25rem; font-weight: 800; color: var(--c, var(--risk-low)); font-variant-numeric: tabular-nums; }
 .slot-tag { font-size: .72rem; font-weight: 600; color: var(--c, var(--risk-low)); }
 
+/* ── 實際觀測 ───────────────────────────────────────────── */
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.section-heading .section-title { margin-bottom: 10px; }
+.section-meta { color: var(--text-faint); font-size: .7rem; white-space: nowrap; }
+.observation-grid { display: grid; gap: 10px; }
+.observation { background: var(--surface-2); border-radius: 12px; padding: 13px 14px; }
+.obs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.obs-head > div { display: flex; flex-direction: column; }
+.obs-head strong { font-size: 1rem; }
+.obs-head span, .obs-head time { color: var(--text-faint); font-size: .68rem; }
+.obs-head time { text-align: right; }
+.obs-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.obs-value { min-width: 0; }
+.obs-value > span { display: block; color: var(--text-faint); font-size: .68rem; }
+.obs-value strong { display: block; font-size: .95rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.obs-value small { color: var(--text-dim); font-size: .65rem; font-weight: 500; margin-left: 2px; }
+.wind-name { color: var(--text-dim); font-size: .7rem; font-weight: 500; margin-left: 4px; }
+.observation-source { color: var(--text-faint); font-size: .68rem; margin-top: 8px; }
+
 /* ── 氣象條件 ───────────────────────────────────────────── */
 .cond-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .cond {

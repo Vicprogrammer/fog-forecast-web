@@ -1,0 +1,28 @@
+{
+ "generated_at": "2026-07-27T09:22:23+08:00",
+ "source": "中央氣象署 CODiS",
+ "stations": [
+  {
+   "area": "北竿",
+   "station_id": "C0W220",
+   "station_name": "北竿",
+   "observed_at": "2026-07-26T23:59:00+08:00",
+   "temperature_c": 28,
+   "relative_humidity_pct": 95,
+   "wind_speed_ms": 3,
+   "wind_direction_deg": 35,
+   "visibility_km": null
+  },
+  {
+   "area": "南竿",
+   "station_id": "467990",
+   "station_name": "馬祖",
+   "observed_at": "2026-07-26T23:59:00+08:00",
+   "temperature_c": 26.8,
+   "relative_humidity_pct": 99,
+   "wind_speed_ms": 2.1,
+   "wind_direction_deg": 76,
+   "visibility_km": 8.1
+  }
+ ]
+}

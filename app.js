@@ -16,6 +16,9 @@
     return { level: '低風險', tag: '低', color: 'var(--risk-low)' };
   }
   const pct = (p) => Math.round(p * 100);
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[char]));
 
   function advice(prob, inSeason) {
     const r = risk(prob);
@@ -174,6 +177,52 @@
     $('trendWrap').hidden = false;
   }
 
+  function compass(degrees) {
+    if (degrees == null || Number.isNaN(Number(degrees))) return '—';
+    const names = ['北', '東北', '東', '東南', '南', '西南', '西', '西北'];
+    return names[Math.round(((Number(degrees) % 360) + 360) % 360 / 45) % 8];
+  }
+
+  function renderObservations(doc) {
+    const stations = Array.isArray(doc.stations) ? doc.stations : [];
+    const wrap = $('observations');
+    wrap.innerHTML = '';
+    for (const station of stations) {
+      const observed = station.observed_at ? new Date(station.observed_at) : null;
+      const observedText = observed && !Number.isNaN(observed.getTime())
+        ? `${relTime(station.observed_at)}｜${observed.toLocaleString('zh-TW')}`
+        : '暫無觀測資料';
+      const values = [
+        ['溫度', station.temperature_c, '°C', 1],
+        ['相對濕度', station.relative_humidity_pct, '%', 0],
+        ['風速', station.wind_speed_ms, 'm/s', 1],
+        ['風向', station.wind_direction_deg, '°', 0],
+        ['能見度', station.visibility_km, 'km', 1],
+      ];
+      const card = document.createElement('article');
+      card.className = 'observation';
+      const cells = values.map(([label, value, unit, digits]) => {
+        let display = '未提供';
+        if (value != null && !Number.isNaN(Number(value))) {
+          display = `${Number(value).toFixed(digits)}<small>${unit}</small>`;
+          if (label === '風向') display += `<span class="wind-name">${compass(value)}</span>`;
+        }
+        return `<div class="obs-value"><span>${label}</span><strong>${display}</strong></div>`;
+      }).join('');
+      card.innerHTML = `
+        <div class="obs-head">
+          <div><strong>${esc(station.area || '—')}</strong><span>${esc(station.station_name)}｜${esc(station.station_id)}</span></div>
+          <time>${observedText}</time>
+        </div>
+        <div class="obs-values">${cells}</div>`;
+      wrap.appendChild(card);
+    }
+    $('observationsUpdated').textContent = doc.generated_at
+      ? `抓取於 ${relTime(doc.generated_at)}` : '';
+    $('observationsSource').textContent = doc.source ? `資料來源：${doc.source}` : '';
+    $('observationsWrap').hidden = stations.length === 0;
+  }
+
   // ── 主載入流程 ────────────────────────────────────────
   let loading = false;
   async function load() {
@@ -195,6 +244,11 @@
         const hist = await fetchJSON(CFG.historyUrl || 'history.json');
         renderTrend(hist);
       } catch (_) { $('trendWrap').hidden = true; }
+
+      try {
+        const observations = await fetchJSON(CFG.observationsUrl || 'observations.json');
+        renderObservations(observations);
+      } catch (_) { $('observationsWrap').hidden = true; }
 
     } catch (err) {
       $('loading').hidden = true;

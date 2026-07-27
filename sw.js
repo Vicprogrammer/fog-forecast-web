@@ -1,6 +1,6 @@
 /* Service worker：App shell 快取優先、資料網路優先（離線回退最後一次快取）。
    改動任何 shell 檔案時，把 VERSION 加一，使用者下次開啟即自動更新。 */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL_CACHE = `fog-shell-${VERSION}`;
 const DATA_CACHE = `fog-data-${VERSION}`;
 
@@ -19,7 +19,7 @@ const SHELL = [
 ];
 
 // 視為「資料」的請求：網路優先、可離線回退
-const DATA_RE = /(today|history)\.json(\?|$)|\/api\/(today|history|preview)/;
+const DATA_RE = /(today|history|observations)\.json(\?|$)|\/api\/(today|history|observations|preview)/;
 
 self.addEventListener('install', (e) => {
   e.waitUntil(

@@ -8,6 +8,7 @@
 window.FOG_CONFIG = {
   todayUrl: 'today.json',
   historyUrl: 'history.json',
+  observationsUrl: 'observations.json',
 
   // 起霧／低能見度風險分級門檻（機率）。低於 low 為低風險，high 以上為高風險。
   riskBands: { low: 0.15, high: 0.40 },
