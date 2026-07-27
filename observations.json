@@ -1,17 +1,21 @@
 {
- "generated_at": "2026-07-27T09:26:53+08:00",
- "source": "中央氣象署 CODiS",
+ "generated_at": "2026-07-27T10:35:32+08:00",
+ "source": "飛航服務總臺航空氣象服務網（北竿）／中央氣象署 CODiS（南竿）",
  "stations": [
   {
    "area": "北竿",
-   "station_id": "C0W220",
-   "station_name": "北竿",
-   "observed_at": "2026-07-26T23:59:00+08:00",
-   "temperature_c": 28,
-   "relative_humidity_pct": 95,
-   "wind_speed_ms": 3,
-   "wind_direction_deg": 35,
-   "visibility_km": null
+   "station_id": "RCMT",
+   "station_name": "馬祖北竿機場",
+   "observed_at": "2026-07-27T02:09:00Z",
+   "temperature_c": 29,
+   "relative_humidity_pct": 79,
+   "wind_speed_ms": 1.5,
+   "wind_direction_deg": 240,
+   "visibility_km": 8.0,
+   "ceiling_ft": 800,
+   "flight_weather_allowed": true,
+   "weather": "多雲時晴",
+   "raw_metar": "SPECI RCMT 270209Z 24003KT 210V270 8000 SCT006 BKN008 BKN035 29/25 Q1009 NOSIG RMK A2981(M)="
   },
   {
    "area": "南竿",

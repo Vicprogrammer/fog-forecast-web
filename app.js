@@ -148,7 +148,46 @@
       ? `風險＝模型估計該時段南竿測站能見度低於 ${thr} km 的機率；不等同機場關場或班機取消機率。`
       : '';
 
+    renderBeigan(doc.beigan);
     return { gen };
+  }
+
+  function renderBeigan(doc) {
+    const wrap = $('beiganWrap');
+    const list = $('beiganSlots');
+    const slots = Array.isArray(doc?.slots) ? doc.slots : [];
+    if (!slots.length) {
+      wrap.hidden = true;
+      return;
+    }
+    const calibrated = Boolean(doc.calibrated_probability);
+    $('beiganMethod').textContent = calibrated ? '歷史取消模型' : '氣象風險指數';
+    $('beiganNote').textContent = doc.disclaimer || '';
+    list.innerHTML = '';
+    for (const slot of slots) {
+      const value = calibrated ? slot.probability : slot.risk_score;
+      const sr = risk(value || 0);
+      const el = document.createElement('div');
+      el.className = 'slot';
+      el.style.setProperty('--c', sr.color);
+      const details = [
+        slot.visibility_km != null ? `能見度 ${Number(slot.visibility_km).toFixed(1)} km` : '',
+        slot.cloud_cover_low_pct != null ? `低雲 ${Math.round(slot.cloud_cover_low_pct)}%` : '',
+        slot.dewpoint_spread_c != null ? `溫露差 ${Number(slot.dewpoint_spread_c).toFixed(1)}°C` : '',
+      ].filter(Boolean).join('｜');
+      el.innerHTML = `
+        <div class="slot-time">${esc(slot.time || '—')}</div>
+        <div class="slot-mid">
+          <div class="slot-bar"><span style="width:${Math.max(2, pct(value || 0))}%"></span></div>
+          <div class="slot-vis">${esc(details)}</div>
+        </div>
+        <div class="slot-right">
+          <div class="slot-prob">${pct(value || 0)}%</div>
+          <div class="slot-tag">${sr.tag}</div>
+        </div>`;
+      list.appendChild(el);
+    }
+    wrap.hidden = false;
   }
 
   function renderTrend(history) {
@@ -198,6 +237,7 @@
         ['風速', station.wind_speed_ms, 'm/s', 1],
         ['風向', station.wind_direction_deg, '°', 0],
         ['能見度', station.visibility_km, 'km', 1],
+        ['雲幕高度', station.ceiling_ft, 'ft', 0],
       ];
       const card = document.createElement('article');
       card.className = 'observation';
@@ -214,7 +254,10 @@
           <div><strong>${esc(station.area || '—')}</strong><span>${esc(station.station_name)}｜${esc(station.station_id)}</span></div>
           <time>${observedText}</time>
         </div>
-        <div class="obs-values">${cells}</div>`;
+        <div class="obs-values">${cells}</div>
+        ${station.weather ? `<p class="observation-source">現象：${esc(station.weather)}</p>` : ''}
+        ${station.flight_weather_allowed === false
+          ? '<p class="observation-source">航空氣象網判定低於適航天氣條件；不等同機場已關場。</p>' : ''}`;
       wrap.appendChild(card);
     }
     $('observationsUpdated').textContent = doc.generated_at

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>南竿起霧預報</title>
-  <meta name="description" content="馬祖南竿機場逐時起霧／低能見度風險預報。">
+  <title>馬祖機場霧況預報</title>
+  <meta name="description" content="馬祖南竿與北竿機場逐時起霧／低能見度風險預報。">
 
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#07182a">
@@ -27,7 +27,7 @@
       <div class="brand">
         <img class="brand-icon" src="icons/icon-192.png" alt="" width="28" height="28">
         <div class="brand-text">
-          <h1>南竿起霧預報</h1>
+          <h1>馬祖機場霧況預報</h1>
           <span class="brand-sub" id="airport">—</span>
         </div>
       </div>
@@ -58,8 +58,17 @@
 
       <!-- 逐時段預報 -->
       <section class="slots" id="slotsWrap" hidden>
-        <h2 class="section-title">逐時段風險</h2>
+        <h2 class="section-title">南竿逐時段低能見度風險</h2>
         <div class="slot-list" id="slots"></div>
+      </section>
+
+      <section class="slots card" id="beiganWrap" hidden>
+        <div class="section-heading">
+          <h2 class="section-title">北竿不適航風險</h2>
+          <span class="section-meta" id="beiganMethod"></span>
+        </div>
+        <div class="slot-list" id="beiganSlots"></div>
+        <p class="observation-source" id="beiganNote"></p>
       </section>
 
       <section class="observations card" id="observationsWrap" hidden>
