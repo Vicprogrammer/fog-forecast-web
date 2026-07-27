@@ -1,6 +1,6 @@
 {
  "date": "2026-07-27",
- "generated_at": "2026-07-27T10:33:57+08:00",
+ "generated_at": "2026-07-27T10:40:59+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 2.4,
  "in_season": false,
@@ -32,55 +32,8 @@
  "beigan": {
   "airport": "北竿 (MFK/RCMT)",
   "date": "2026-07-27",
-  "method": "meteorological_risk_index",
   "calibrated_probability": false,
-  "slots": [
-   {
-    "time": "06:00",
-    "visibility_km": 16.66,
-    "dewpoint_spread_c": 2.0,
-    "relative_humidity_pct": 89.0,
-    "wind_speed_ms": 3.48,
-    "cloud_cover_low_pct": 1.0,
-    "risk_score": 0.1523
-   },
-   {
-    "time": "09:00",
-    "visibility_km": 16.66,
-    "dewpoint_spread_c": 2.3,
-    "relative_humidity_pct": 87.0,
-    "wind_speed_ms": 2.87,
-    "cloud_cover_low_pct": 1.0,
-    "risk_score": 0.1123
-   },
-   {
-    "time": "12:00",
-    "visibility_km": 18.76,
-    "dewpoint_spread_c": 2.7,
-    "relative_humidity_pct": 85.0,
-    "wind_speed_ms": 2.57,
-    "cloud_cover_low_pct": 2.0,
-    "risk_score": 0.0655
-   },
-   {
-    "time": "15:00",
-    "visibility_km": 5.06,
-    "dewpoint_spread_c": 2.7,
-    "relative_humidity_pct": 85.0,
-    "wind_speed_ms": 4.6,
-    "cloud_cover_low_pct": 2.0,
-    "risk_score": 0.2545
-   },
-   {
-    "time": "18:00",
-    "visibility_km": 17.72,
-    "dewpoint_spread_c": 3.3,
-    "relative_humidity_pct": 82.0,
-    "wind_speed_ms": 4.18,
-    "cloud_cover_low_pct": 9.0,
-    "risk_score": 0.0285
-   }
-  ],
-  "disclaimer": "尚未設定 TDX 歷史資料金鑰，顯示氣象風險指數，不是取消機率。"
+  "slots": [],
+  "error": "北竿資料暫時無法取得"
  }
 }
