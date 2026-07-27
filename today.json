@@ -1,22 +1,62 @@
 {
  "date": "2026-07-27",
- "generated_at": "2026-07-27T12:40:41+08:00",
+ "generated_at": "2026-07-27T12:55:11+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 2.4,
  "in_season": false,
  "slots": [
   {
-   "time": "07:40",
+   "time": "07:25",
    "prob": 0.1515,
    "forecast_vis_km": 16.5
   },
   {
-   "time": "14:20",
+   "time": "08:20",
+   "prob": 0.1515,
+   "forecast_vis_km": 16.5
+  },
+  {
+   "time": "10:25",
+   "prob": 0.1119,
+   "forecast_vis_km": 18.7
+  },
+  {
+   "time": "11:15",
+   "prob": 0.1119,
+   "forecast_vis_km": 18.7
+  },
+  {
+   "time": "11:25",
+   "prob": 0.1119,
+   "forecast_vis_km": 18.7
+  },
+  {
+   "time": "12:25",
+   "prob": 0.1119,
+   "forecast_vis_km": 18.7
+  },
+  {
+   "time": "13:10",
    "prob": 0.1335,
    "forecast_vis_km": 4.3
   },
   {
-   "time": "16:15",
+   "time": "13:20",
+   "prob": 0.1335,
+   "forecast_vis_km": 4.3
+  },
+  {
+   "time": "15:05",
+   "prob": 0.1335,
+   "forecast_vis_km": 4.3
+  },
+  {
+   "time": "16:05",
+   "prob": 0.1078,
+   "forecast_vis_km": 15.4
+  },
+  {
+   "time": "17:00",
    "prob": 0.1078,
    "forecast_vis_km": 15.4
   }
@@ -36,59 +76,37 @@
   "calibrated_probability": false,
   "slots": [
    {
-    "time": "06:00",
-    "temperature_c": 27.4,
-    "dewpoint_c": 25.4,
-    "visibility_km": 16.66,
-    "dewpoint_spread_c": 2.0,
-    "relative_humidity_pct": 89.0,
-    "wind_speed_ms": 3.48,
-    "cloud_cover_low_pct": 1.0,
-    "risk_score": 0.1523
-   },
-   {
-    "time": "09:00",
+    "time": "07:40",
     "temperature_c": 27.5,
-    "dewpoint_c": 25.2,
-    "visibility_km": 16.66,
-    "dewpoint_spread_c": 2.3,
+    "dewpoint_c": 25.3,
+    "visibility_km": 16.53,
+    "dewpoint_spread_c": 2.2,
+    "relative_humidity_pct": 88.0,
+    "wind_speed_ms": 3.96,
+    "cloud_cover_low_pct": 0.7,
+    "risk_score": 0.1277
+   },
+   {
+    "time": "14:20",
+    "temperature_c": 27.0,
+    "dewpoint_c": 24.6,
+    "visibility_km": 8.22,
+    "dewpoint_spread_c": 2.43,
     "relative_humidity_pct": 87.0,
-    "wind_speed_ms": 2.87,
-    "cloud_cover_low_pct": 1.0,
-    "risk_score": 0.1123
+    "wind_speed_ms": 4.12,
+    "cloud_cover_low_pct": 1.3,
+    "risk_score": 0.1019
    },
    {
-    "time": "12:00",
-    "temperature_c": 27.4,
-    "dewpoint_c": 24.7,
-    "visibility_km": 18.76,
-    "dewpoint_spread_c": 2.7,
-    "relative_humidity_pct": 85.0,
-    "wind_speed_ms": 2.57,
-    "cloud_cover_low_pct": 2.0,
-    "risk_score": 0.0655
-   },
-   {
-    "time": "15:00",
+    "time": "16:15",
     "temperature_c": 26.9,
     "dewpoint_c": 24.2,
-    "visibility_km": 5.06,
-    "dewpoint_spread_c": 2.7,
-    "relative_humidity_pct": 85.0,
-    "wind_speed_ms": 4.6,
-    "cloud_cover_low_pct": 2.0,
-    "risk_score": 0.2545
-   },
-   {
-    "time": "18:00",
-    "temperature_c": 27.6,
-    "dewpoint_c": 24.3,
-    "visibility_km": 17.72,
-    "dewpoint_spread_c": 3.3,
-    "relative_humidity_pct": 82.0,
-    "wind_speed_ms": 4.18,
-    "cloud_cover_low_pct": 9.0,
-    "risk_score": 0.0285
+    "visibility_km": 10.37,
+    "dewpoint_spread_c": 2.62,
+    "relative_humidity_pct": 85.2,
+    "wind_speed_ms": 4.4,
+    "cloud_cover_low_pct": 1.2,
+    "risk_score": 0.0725
    }
   ],
   "disclaimer": "尚未設定 TDX 歷史資料金鑰，顯示氣象風險指數，不是取消機率。"
