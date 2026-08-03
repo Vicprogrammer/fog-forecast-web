@@ -1,6 +1,6 @@
 {
  "date": "2026-08-04",
- "generated_at": "2026-08-04T05:41:17+08:00",
+ "generated_at": "2026-08-04T06:56:05+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,67 +9,67 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.0044,
+   "prob": 0.0043,
    "forecast_vis_km": 14.0,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "08:20",
-   "prob": 0.0105,
+   "prob": 0.0098,
    "forecast_vis_km": 14.0,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "10:25",
-   "prob": 0.0286,
+   "prob": 0.0274,
    "forecast_vis_km": 15.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:15",
-   "prob": 0.0303,
+   "prob": 0.0286,
    "forecast_vis_km": 15.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:25",
-   "prob": 0.0296,
+   "prob": 0.028,
    "forecast_vis_km": 15.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "12:25",
-   "prob": 0.0371,
+   "prob": 0.035,
    "forecast_vis_km": 15.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:10",
-   "prob": 0.041,
+   "prob": 0.0391,
    "forecast_vis_km": 18.4,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:20",
-   "prob": 0.0402,
+   "prob": 0.0381,
    "forecast_vis_km": 18.4,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "15:05",
-   "prob": 0.0492,
+   "prob": 0.0465,
    "forecast_vis_km": 18.4,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "16:05",
-   "prob": 0.0571,
+   "prob": 0.0535,
    "forecast_vis_km": 18.4,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "17:00",
-   "prob": 0.0664,
+   "prob": 0.0621,
    "forecast_vis_km": 18.4,
    "probability_source": "RCFG_06:00_nowcast"
   }
