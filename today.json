@@ -1,6 +1,6 @@
 {
  "date": "2026-08-08",
- "generated_at": "2026-08-08T05:11:34+08:00",
+ "generated_at": "2026-08-08T06:28:17+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,67 +9,67 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.0,
+   "prob": 0.0001,
    "forecast_vis_km": 23.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "08:20",
-   "prob": 0.0003,
+   "prob": 0.0006,
    "forecast_vis_km": 23.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "10:25",
-   "prob": 0.0011,
+   "prob": 0.0023,
    "forecast_vis_km": 25.9,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:15",
-   "prob": 0.0007,
+   "prob": 0.0014,
    "forecast_vis_km": 25.9,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:25",
-   "prob": 0.001,
-   "forecast_vis_km": 25.9,
-   "probability_source": "RCFG_06:00_nowcast"
-  },
-  {
-   "time": "12:25",
    "prob": 0.0019,
    "forecast_vis_km": 25.9,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
+   "time": "12:25",
+   "prob": 0.0037,
+   "forecast_vis_km": 25.9,
+   "probability_source": "RCFG_06:00_nowcast"
+  },
+  {
    "time": "13:10",
-   "prob": 0.0024,
+   "prob": 0.0042,
    "forecast_vis_km": 9.9,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:20",
-   "prob": 0.0026,
-   "forecast_vis_km": 9.9,
-   "probability_source": "RCFG_06:00_nowcast"
-  },
-  {
-   "time": "15:05",
    "prob": 0.0045,
    "forecast_vis_km": 9.9,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
+   "time": "15:05",
+   "prob": 0.0088,
+   "forecast_vis_km": 9.9,
+   "probability_source": "RCFG_06:00_nowcast"
+  },
+  {
    "time": "16:05",
-   "prob": 0.0046,
+   "prob": 0.0092,
    "forecast_vis_km": 23.5,
    "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "17:00",
-   "prob": 0.0047,
+   "prob": 0.0095,
    "forecast_vis_km": 23.5,
    "probability_source": "RCFG_06:00_nowcast"
   }
