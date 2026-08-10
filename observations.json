@@ -1,6 +1,6 @@
 {
  "date": "2026-08-10",
- "generated_at": "2026-08-10T14:00:18+08:00",
+ "generated_at": "2026-08-10T16:00:37+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-10T05:00:00Z",
-   "temperature_c": 31,
+   "observed_at": "2026-08-10T07:00:00Z",
+   "temperature_c": 30,
    "relative_humidity_pct": 70,
-   "wind_speed_ms": 3.6,
-   "wind_direction_deg": 180,
+   "wind_speed_ms": 4.1,
+   "wind_direction_deg": 220,
    "visibility_km": 10.0,
    "ceiling_ft": 4000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCMT 100500Z 18007KT 9999 FEW015 BKN040 BKN150 31/25 Q0991 NOSIG RMK A2928(U)="
+   "raw_metar": "METAR RCMT 100700Z 22008KT 9999 FEW015 BKN040 BKN150 30/24 Q0991 NOSIG RMK A2927(W)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-10T05:00:00Z",
-   "temperature_c": 30,
+   "observed_at": "2026-08-10T07:00:00Z",
+   "temperature_c": 29,
    "relative_humidity_pct": 79,
    "wind_speed_ms": 4.1,
-   "wind_direction_deg": 200,
+   "wind_direction_deg": 220,
    "visibility_km": 10.0,
-   "ceiling_ft": 4000,
+   "ceiling_ft": 10000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCFG 100500Z 20008KT 170V230 9999 FEW015 BKN040 BKN120 30/26 Q0991 NOSIG RMK VRB04KT/R03 MAX WND 13KT/R21 20008KT/NJL A2929(Q)="
+   "raw_metar": "METAR RCFG 100700Z 22008KT 190V250 9999 FEW015 BKN100 29/25 Q0991 NOSIG RMK 23006KT/R03 MAX WND 11KT/R21 VRB06KT/NJL A2929(S)="
   }
  ],
  "flights": [
@@ -49,8 +49,8 @@
    "time": "14:20",
    "flight_number": "B78785",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "延誤",
+   "status_code": "delayed"
   },
   {
    "area": "北竿",
@@ -129,8 +129,8 @@
    "time": "15:05",
    "flight_number": "B78771",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
