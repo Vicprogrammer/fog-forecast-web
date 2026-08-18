@@ -1,6 +1,6 @@
 {
  "date": "2026-08-18",
- "generated_at": "2026-08-18T12:47:59+08:00",
+ "generated_at": "2026-08-18T13:42:06+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-18T04:00:00Z",
+   "observed_at": "2026-08-18T05:00:00Z",
    "temperature_c": 31,
    "relative_humidity_pct": 70,
-   "wind_speed_ms": 8.7,
+   "wind_speed_ms": 8.2,
    "wind_direction_deg": 40,
    "visibility_km": 10.0,
    "ceiling_ft": 2000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCMT 180400Z 04017KT 9999 FEW010 BKN020 31/25 Q1007 NOSIG RMK A2975(U)="
+   "raw_metar": "METAR RCMT 180500Z 04016KT 9999 FEW010 BKN020 31/25 Q1007 NOSIG RMK A2975(V)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-18T04:00:00Z",
+   "observed_at": "2026-08-18T05:00:00Z",
    "temperature_c": 31,
-   "relative_humidity_pct": 75,
+   "relative_humidity_pct": 79,
    "wind_speed_ms": 7.2,
-   "wind_direction_deg": 50,
+   "wind_direction_deg": 40,
    "visibility_km": 10.0,
-   "ceiling_ft": 2000,
+   "ceiling_ft": 15000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCFG 180400Z 05014KT 9999 FEW015 BKN020 31/26 Q1007 NOSIG RMK 06018KT/R21 MAX WND 21KT/R03 05015G26KT/NJL A2976(A)="
+   "raw_metar": "METAR RCFG 180500Z 04014KT 020V080 9999 FEW013 SCT025 BKN150 31/27 Q1007 NOSIG RMK 05020KT/R21 MAX WND 22KT/R03 05014G26KT/NJL A2974(B)="
   }
  ],
  "flights": [
@@ -105,16 +105,16 @@
    "time": "13:15",
    "flight_number": "B78757",
    "direction": "arrival",
-   "status": "延誤",
-   "status_code": "delayed"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
    "time": "13:20",
    "flight_number": "B78759",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "延誤",
+   "status_code": "delayed"
   },
   {
    "area": "南竿",
