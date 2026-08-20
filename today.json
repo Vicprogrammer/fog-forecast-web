@@ -1,6 +1,6 @@
 {
  "date": "2026-08-21",
- "generated_at": "2026-08-21T01:37:20+08:00",
+ "generated_at": "2026-08-21T04:57:03+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,68 +9,68 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.0221,
-   "forecast_vis_km": 6.9,
+   "prob": 0.0168,
+   "forecast_vis_km": 4.8,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "08:20",
-   "prob": 0.0214,
-   "forecast_vis_km": 6.9,
+   "prob": 0.0167,
+   "forecast_vis_km": 4.8,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "10:25",
-   "prob": 0.0199,
-   "forecast_vis_km": 16.4,
+   "prob": 0.027,
+   "forecast_vis_km": 4.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:15",
-   "prob": 0.0286,
-   "forecast_vis_km": 16.4,
+   "prob": 0.0369,
+   "forecast_vis_km": 4.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:25",
-   "prob": 0.0325,
-   "forecast_vis_km": 16.4,
+   "prob": 0.0409,
+   "forecast_vis_km": 4.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "12:25",
-   "prob": 0.041,
-   "forecast_vis_km": 16.4,
+   "prob": 0.0492,
+   "forecast_vis_km": 4.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "13:10",
-   "prob": 0.0303,
-   "forecast_vis_km": 16.0,
+   "prob": 0.0504,
+   "forecast_vis_km": 14.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "13:20",
-   "prob": 0.0274,
-   "forecast_vis_km": 16.0,
+   "prob": 0.0472,
+   "forecast_vis_km": 14.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "15:05",
-   "prob": 0.0383,
-   "forecast_vis_km": 16.0,
+   "prob": 0.0616,
+   "forecast_vis_km": 14.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "16:05",
-   "prob": 0.0247,
-   "forecast_vis_km": 12.6,
+   "prob": 0.026,
+   "forecast_vis_km": 6.4,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "17:00",
-   "prob": 0.0314,
-   "forecast_vis_km": 12.6,
+   "prob": 0.0309,
+   "forecast_vis_km": 6.4,
    "probability_source": "numerical_weather_prediction"
   }
  ],
@@ -78,9 +78,9 @@
   "sst": 28.51,
   "sst_date": "2026-08-19",
   "sst_source": "OSTIA",
-  "rh": 81.86,
-  "wind": 1.86,
-  "td_minus_sst": -4.62
+  "rh": 81.29,
+  "wind": 2.79,
+  "td_minus_sst": -4.38
  },
  "beigan": {
   "airport": "北竿 (MFK/RCMT)",
@@ -90,36 +90,36 @@
   "slots": [
    {
     "time": "07:40",
-    "temperature_c": 27.6,
-    "dewpoint_c": 23.7,
-    "visibility_km": 6.29,
-    "dewpoint_spread_c": 3.83,
-    "relative_humidity_pct": 79.7,
-    "wind_speed_ms": 1.37,
-    "cloud_cover_low_pct": 30.3,
-    "probability": 0.05
+    "temperature_c": 27.5,
+    "dewpoint_c": 24.2,
+    "visibility_km": 7.38,
+    "dewpoint_spread_c": 3.33,
+    "relative_humidity_pct": 82.0,
+    "wind_speed_ms": 2.35,
+    "cloud_cover_low_pct": 21.0,
+    "probability": 0.0331
    },
    {
     "time": "14:20",
-    "temperature_c": 27.9,
-    "dewpoint_c": 24.4,
-    "visibility_km": 16.41,
+    "temperature_c": 28.2,
+    "dewpoint_c": 24.7,
+    "visibility_km": 13.81,
     "dewpoint_spread_c": 3.5,
-    "relative_humidity_pct": 81.0,
-    "wind_speed_ms": 3.15,
-    "cloud_cover_low_pct": 3.3,
-    "probability": 0.0002
+    "relative_humidity_pct": 81.3,
+    "wind_speed_ms": 4.33,
+    "cloud_cover_low_pct": 10.3,
+    "probability": 0.0012
    },
    {
     "time": "16:15",
-    "temperature_c": 28.1,
-    "dewpoint_c": 24.6,
-    "visibility_km": 17.7,
-    "dewpoint_spread_c": 3.57,
-    "relative_humidity_pct": 80.8,
-    "wind_speed_ms": 3.4,
-    "cloud_cover_low_pct": 35.8,
-    "probability": 0.0001
+    "temperature_c": 28.2,
+    "dewpoint_c": 24.9,
+    "visibility_km": 13.71,
+    "dewpoint_spread_c": 3.35,
+    "relative_humidity_pct": 82.0,
+    "wind_speed_ms": 5.69,
+    "cloud_cover_low_pct": 9.0,
+    "probability": 0.0014
    }
   ],
   "disclaimer": "模型依歷史取消與航班時段機場實況建立；實際提前預報仍受數值天氣預報誤差影響，僅供參考。不是機場官方關場決策或公告。"
