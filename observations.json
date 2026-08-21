@@ -1,6 +1,6 @@
 {
  "date": "2026-08-21",
- "generated_at": "2026-08-21T07:59:12+08:00",
+ "generated_at": "2026-08-21T09:54:40+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-20T23:00:00Z",
-   "temperature_c": 26,
-   "relative_humidity_pct": 94,
-   "wind_speed_ms": 0.0,
-   "wind_direction_deg": 0,
+   "observed_at": "2026-08-21T01:00:00Z",
+   "temperature_c": 27,
+   "relative_humidity_pct": 89,
+   "wind_speed_ms": 0.5,
+   "wind_direction_deg": 360,
    "visibility_km": 10.0,
-   "ceiling_ft": 1600,
+   "ceiling_ft": 5000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCMT 202300Z 00000KT 9999 SCT010 BKN016 26/25 Q1004 NOSIG RMK A2965(F)="
+   "raw_metar": "METAR RCMT 210100Z 36001KT 9999 FEW010 BKN050 BKN100 27/25 Q1004 NOSIG RMK A2966(H)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-20T23:38:00Z",
-   "temperature_c": 26,
-   "relative_humidity_pct": 100,
+   "observed_at": "2026-08-21T01:00:00Z",
+   "temperature_c": 29,
+   "relative_humidity_pct": 84,
    "wind_speed_ms": 1.5,
-   "wind_direction_deg": 60,
+   "wind_direction_deg": 120,
    "visibility_km": 10.0,
-   "ceiling_ft": 2000,
+   "ceiling_ft": 8000,
    "flight_weather_allowed": true,
    "weather": "鄰近有陣雨",
-   "raw_metar": "SPECI RCFG 202338Z 06003KT 010V120 9999 VCSH SCT008 FEW016TCU BKN020 BKN070 26/26 Q1005 NOSIG RMK 09004KT/R21 MAX WND 06KT/R03 09005KT/NJL TCU NE A2968(S)="
+   "raw_metar": "METAR RCFG 210100Z 12003KT 060V180 9999 VCSH SCT009 SCT020 BKN080 29/26 Q1004 NOSIG RMK 12004KT/R21 MAX WND 05KT/R03 13003KT/NJL A2967(U)="
   }
  ],
  "flights": [
@@ -73,8 +73,8 @@
    "time": "08:20",
    "flight_number": "B79091",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
