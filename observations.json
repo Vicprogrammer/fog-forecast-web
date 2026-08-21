@@ -1,6 +1,6 @@
 {
  "date": "2026-08-22",
- "generated_at": "2026-08-22T05:58:34+08:00",
+ "generated_at": "2026-08-22T06:37:46+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-21T21:31:00Z",
+   "observed_at": "2026-08-21T22:00:00Z",
    "temperature_c": 27,
    "relative_humidity_pct": 94,
-   "wind_speed_ms": 1.0,
-   "wind_direction_deg": null,
+   "wind_speed_ms": 2.1,
+   "wind_direction_deg": 210,
    "visibility_km": 10.0,
    "ceiling_ft": 1100,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "SPECI RCMT 212131Z VRB02KT 9999 SCT007 BKN011 BKN030 27/26 Q1001 NOSIG RMK A2956(V)="
+   "raw_metar": "METAR RCMT 212200Z 21004KT 9999 SCT007 BKN011 BKN030 27/26 Q1001 NOSIG RMK A2957(W)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-21T21:00:00Z",
+   "observed_at": "2026-08-21T22:00:00Z",
    "temperature_c": 27,
    "relative_humidity_pct": 94,
-   "wind_speed_ms": 1.0,
-   "wind_direction_deg": null,
+   "wind_speed_ms": 2.1,
+   "wind_direction_deg": 200,
    "visibility_km": 10.0,
-   "ceiling_ft": 3000,
+   "ceiling_ft": 2000,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCFG 212100Z VRB02KT 9999 SCT008 BKN030 27/26 Q1001 NOSIG RMK VRB02KT/R03 MAX WND 04KT/R21 19004KT/NJL A2957(H)="
+   "raw_metar": "METAR RCFG 212200Z 20004KT 170V240 9999 SCT008 BKN020 BKN060 27/26 Q1002 NOSIG RMK 19003KT/R03 MAX WND 06KT/R21 17006KT/NJL A2959(I)="
   }
  ],
  "flights": [
