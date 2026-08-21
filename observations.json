@@ -1,6 +1,6 @@
 {
  "date": "2026-08-21",
- "generated_at": "2026-08-21T15:54:28+08:00",
+ "generated_at": "2026-08-21T16:54:16+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,7 +8,7 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-21T07:46:00Z",
+   "observed_at": "2026-08-21T08:00:00Z",
    "temperature_c": 30,
    "relative_humidity_pct": 70,
    "wind_speed_ms": 2.6,
@@ -17,22 +17,22 @@
    "ceiling_ft": null,
    "flight_weather_allowed": true,
    "weather": "晴朗",
-   "raw_metar": "SPECI RCMT 210746Z 18005KT 150V210 9999 FEW015 30/24 Q1001 NOSIG RMK R21 A2957(O)="
+   "raw_metar": "METAR RCMT 210800Z 18005KT 150V210 9999 FEW015 30/24 Q1001 NOSIG RMK A2957(P)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-21T07:00:00Z",
+   "observed_at": "2026-08-21T08:00:00Z",
    "temperature_c": 30,
-   "relative_humidity_pct": 84,
+   "relative_humidity_pct": 79,
    "wind_speed_ms": 2.1,
-   "wind_direction_deg": 190,
+   "wind_direction_deg": 150,
    "visibility_km": 10.0,
-   "ceiling_ft": 14000,
+   "ceiling_ft": null,
    "flight_weather_allowed": true,
-   "weather": "多雲時晴",
-   "raw_metar": "METAR RCFG 210700Z 19004KT 140V240 9999 FEW012 SCT060 BKN140 30/27 Q1002 NOSIG RMK 16004KT/R03 MAX WND 06KT/R21 15005KT/NJL A2960(B)="
+   "weather": "晴時多雲",
+   "raw_metar": "METAR RCFG 210800Z 15004KT 110V200 9999 FEW012 SCT060 30/26 Q1002 NOSIG RMK 15003KT/R03 MAX WND 07KT/R21 15005KT/NJL A2959(C)="
   }
  ],
  "flights": [
@@ -129,8 +129,8 @@
    "time": "16:05",
    "flight_number": "B78735",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
@@ -145,8 +145,8 @@
    "time": "17:45",
    "flight_number": "B78775",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "延誤",
+   "status_code": "delayed"
   }
  ]
 }
