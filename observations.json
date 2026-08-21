@@ -1,6 +1,6 @@
 {
  "date": "2026-08-21",
- "generated_at": "2026-08-21T17:49:22+08:00",
+ "generated_at": "2026-08-21T18:43:40+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-21T09:00:00Z",
-   "temperature_c": 29,
-   "relative_humidity_pct": 79,
-   "wind_speed_ms": 2.6,
+   "observed_at": "2026-08-21T10:00:00Z",
+   "temperature_c": 28,
+   "relative_humidity_pct": 84,
+   "wind_speed_ms": 3.1,
    "wind_direction_deg": 180,
    "visibility_km": 10.0,
    "ceiling_ft": null,
    "flight_weather_allowed": true,
-   "weather": "晴朗",
-   "raw_metar": "METAR RCMT 210900Z 18005KT 9999 FEW015 29/25 Q1001 NOSIG RMK A2957(Q)="
+   "weather": "晴時多雲",
+   "raw_metar": "METAR RCMT 211000Z 18006KT 9999 FEW015 SCT100 28/25 Q1001 NOSIG RMK A2958(R)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-21T09:00:00Z",
-   "temperature_c": 29,
-   "relative_humidity_pct": 84,
-   "wind_speed_ms": 2.6,
-   "wind_direction_deg": 160,
+   "observed_at": "2026-08-21T10:00:00Z",
+   "temperature_c": 28,
+   "relative_humidity_pct": 89,
+   "wind_speed_ms": 3.1,
+   "wind_direction_deg": 170,
    "visibility_km": 10.0,
    "ceiling_ft": null,
    "flight_weather_allowed": true,
    "weather": "晴時多雲",
-   "raw_metar": "METAR RCFG 210900Z 16005KT 130V210 9999 SCT010 SCT150 29/26 Q1002 NOSIG RMK 15004KT/R03 MAX WND 08KT/R21 15006KT/NJL A2959(D)="
+   "raw_metar": "METAR RCFG 211000Z 17006KT 120V220 9999 FEW010 SCT150 28/26 Q1002 NOSIG RMK 17006KT/R03 MAX WND 10KT/R21 16009KT/NJL A2960(E)="
   }
  ],
  "flights": [
@@ -57,8 +57,8 @@
    "time": "16:15",
    "flight_number": "B78789",
    "direction": "arrival",
-   "status": "延誤",
-   "status_code": "delayed"
+   "status": "取消",
+   "status_code": "cancelled"
   },
   {
    "area": "南竿",
@@ -145,8 +145,8 @@
    "time": "17:45",
    "flight_number": "B78775",
    "direction": "arrival",
-   "status": "延誤",
-   "status_code": "delayed"
+   "status": "取消",
+   "status_code": "cancelled"
   }
  ]
 }
