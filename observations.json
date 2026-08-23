@@ -1,6 +1,6 @@
 {
  "date": "2026-08-24",
- "generated_at": "2026-08-24T06:57:10+08:00",
+ "generated_at": "2026-08-24T07:32:48+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,31 +8,31 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-23T22:00:00Z",
+   "observed_at": "2026-08-23T23:00:00Z",
    "temperature_c": 28,
    "relative_humidity_pct": 84,
-   "wind_speed_ms": 3.6,
-   "wind_direction_deg": 140,
+   "wind_speed_ms": 1.5,
+   "wind_direction_deg": 90,
    "visibility_km": 10.0,
-   "ceiling_ft": 3500,
+   "ceiling_ft": 1400,
    "flight_weather_allowed": true,
    "weather": "多雲時晴",
-   "raw_metar": "METAR RCMT 232200Z 14007KT 100V190 9999 FEW008 SCT022 BKN035 28/25 Q1001 NOSIG RMK A2957(J)="
+   "raw_metar": "METAR RCMT 232300Z 09003KT 350V070 9999 SCT007 BKN014 BKN030 28/25 Q1002 NOSIG RMK A2959(K)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-23T22:28:00Z",
-   "temperature_c": 27,
-   "relative_humidity_pct": 100,
-   "wind_speed_ms": 4.6,
-   "wind_direction_deg": 150,
+   "observed_at": "2026-08-23T23:00:00Z",
+   "temperature_c": 28,
+   "relative_humidity_pct": 94,
+   "wind_speed_ms": 2.6,
+   "wind_direction_deg": 140,
    "visibility_km": 10.0,
    "ceiling_ft": 1500,
    "flight_weather_allowed": true,
-   "weather": "多雲時晴",
-   "raw_metar": "SPECI RCFG 232228Z 15009KT 9999 SCT008 BKN015 BKN030 27/27 Q1002 TEMPO SCT007 BKN011 BKN030 RMK 13002KT/R03 MAX WND 13KT/R21 13009KT/NJL A2960(X)="
+   "weather": "鄰近有陣雨",
+   "raw_metar": "METAR RCFG 232300Z 14005KT 9999 VCSH SCT008 BKN015 BKN040 28/27 Q1002 TEMPO SCT007 BKN011 BKN030 RMK 12003KT/R03 MAX WND 08KT/R21 12007KT/NJL A2960(Y)="
   }
  ],
  "flights": [
@@ -46,48 +46,40 @@
   },
   {
    "area": "北竿",
-   "time": "14:20",
+   "time": "15:55",
    "flight_number": "B78785",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "延誤",
+   "status_code": "delayed"
   },
   {
    "area": "北竿",
-   "time": "16:15",
+   "time": "17:00",
    "flight_number": "B78789",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "延誤",
+   "status_code": "delayed"
   },
   {
    "area": "南竿",
    "time": "07:25",
    "flight_number": "B78751",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
    "time": "08:20",
    "flight_number": "B79091",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "取消",
+   "status_code": "cancelled"
   },
   {
    "area": "南竿",
-   "time": "10:25",
+   "time": "10:15",
    "flight_number": "B78755",
-   "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
-  },
-  {
-   "area": "南竿",
-   "time": "11:15",
-   "flight_number": "B78757",
    "direction": "arrival",
    "status": "準時",
    "status_code": "on_time"
@@ -96,6 +88,14 @@
    "area": "南竿",
    "time": "11:25",
    "flight_number": "AE7901",
+   "direction": "arrival",
+   "status": "準時",
+   "status_code": "on_time"
+  },
+  {
+   "area": "南竿",
+   "time": "11:55",
+   "flight_number": "B78757",
    "direction": "arrival",
    "status": "準時",
    "status_code": "on_time"
@@ -118,7 +118,7 @@
   },
   {
    "area": "南竿",
-   "time": "13:20",
+   "time": "13:55",
    "flight_number": "B78759",
    "direction": "arrival",
    "status": "準時",
@@ -126,7 +126,7 @@
   },
   {
    "area": "南竿",
-   "time": "15:05",
+   "time": "14:50",
    "flight_number": "B78771",
    "direction": "arrival",
    "status": "準時",
@@ -142,7 +142,7 @@
   },
   {
    "area": "南竿",
-   "time": "17:00",
+   "time": "17:45",
    "flight_number": "B78775",
    "direction": "arrival",
    "status": "準時",
