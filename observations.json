@@ -1,6 +1,6 @@
 {
  "date": "2026-08-23",
- "generated_at": "2026-08-23T12:20:17+08:00",
+ "generated_at": "2026-08-23T13:05:05+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -8,8 +8,8 @@
    "area": "北竿",
    "station_id": "RCMT",
    "station_name": "馬祖北竿機場",
-   "observed_at": "2026-08-23T04:14:00Z",
-   "temperature_c": 28,
+   "observed_at": "2026-08-23T05:00:00Z",
+   "temperature_c": 27,
    "relative_humidity_pct": 89,
    "wind_speed_ms": 2.6,
    "wind_direction_deg": 20,
@@ -17,22 +17,22 @@
    "ceiling_ft": 800,
    "flight_weather_allowed": true,
    "weather": "小陣雨",
-   "raw_metar": "SPECI RCMT 230414Z 02005KT 330V030 8000 -SHRA SCT006 BKN008 BKN030 28/26 Q1002 TEMPO SCT005 BKN007 BKN030 RMK R03 A2960(Y)="
+   "raw_metar": "METAR RCMT 230500Z 02005KT 330V030 8000 -SHRA SCT006 BKN008 BKN030 27/25 Q1002 TEMPO SCT005 BKN007 BKN030 RMK A2960 RA AMT 0.4MM(Z)="
   },
   {
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-23T04:09:00Z",
+   "observed_at": "2026-08-23T05:00:00Z",
    "temperature_c": 28,
-   "relative_humidity_pct": 89,
+   "relative_humidity_pct": 94,
    "wind_speed_ms": 1.5,
-   "wind_direction_deg": 110,
+   "wind_direction_deg": 40,
    "visibility_km": 10.0,
-   "ceiling_ft": 1000,
-   "flight_weather_allowed": true,
-   "weather": "小陣雨",
-   "raw_metar": "SPECI RCFG 230409Z 11003KT 030V140 9999 -SHRA SCT006 BKN010 BKN040 28/26 Q1002 TEMPO 5000 SHRA SCT005 BKN009 BKN040 RMK 11003KT/R21 MAX WND 06KT/R03 VRB03KT/NJL A2961(J)="
+   "ceiling_ft": 800,
+   "flight_weather_allowed": false,
+   "weather": "小雨",
+   "raw_metar": "METAR RCFG 230500Z 04003KT 360V100 9999 -RA SCT005 BKN008 BKN030 28/27 Q1002 TEMPO 5000 RA SCT004 BKN006 BKN030 RMK 03006KT/R21 MAX WND 08KT/R03 02005KT/NJL A2961(L)="
   }
  ],
  "flights": [
@@ -97,8 +97,8 @@
    "time": "12:25",
    "flight_number": "B78731",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "南竿",
