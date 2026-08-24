@@ -1,6 +1,6 @@
 {
  "date": "2026-08-25",
- "generated_at": "2026-08-25T07:32:12+08:00",
+ "generated_at": "2026-08-25T07:54:49+08:00",
  "source": "飛航服務總臺航空氣象服務網（RCMT／RCFG）",
  "flight_source": "馬祖航空站即時航班",
  "stations": [
@@ -23,16 +23,16 @@
    "area": "南竿",
    "station_id": "RCFG",
    "station_name": "馬祖南竿機場",
-   "observed_at": "2026-08-24T23:00:00Z",
-   "temperature_c": 27,
-   "relative_humidity_pct": 100,
-   "wind_speed_ms": 4.6,
-   "wind_direction_deg": 110,
-   "visibility_km": 8.0,
-   "ceiling_ft": 1100,
+   "observed_at": "2026-08-24T23:47:00Z",
+   "temperature_c": 28,
+   "relative_humidity_pct": 94,
+   "wind_speed_ms": 3.6,
+   "wind_direction_deg": 50,
+   "visibility_km": 5.0,
+   "ceiling_ft": 900,
    "flight_weather_allowed": true,
-   "weather": "小陣雨",
-   "raw_metar": "METAR RCFG 242300Z 11009KT 8000 -SHRA SCT007 BKN011 BKN025 27/27 Q1005 TEMPO 4000 SHRA SCT006 BKN009 BKN020 RMK 02004KT/R03 MAX WND 16KT/R21 10012KT/NJL A2969 RA AMT 0.4MM(C)="
+   "weather": "小陣雨 靄",
+   "raw_metar": "SPECI RCFG 242347Z 05007G17KT 010V120 5000 -SHRA BR SCT006 BKN009 BKN020 28/27 Q1005 TEMPO 3600 SHRA RMK 10015G25KT/R21 10020G32KT/NJL A2968(E)="
   }
  ],
  "flights": [
@@ -41,8 +41,8 @@
    "time": "07:40",
    "flight_number": "B78781",
    "direction": "arrival",
-   "status": "準時",
-   "status_code": "on_time"
+   "status": "已到",
+   "status_code": "arrived"
   },
   {
    "area": "北竿",
