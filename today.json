@@ -1,6 +1,6 @@
 {
  "date": "2026-08-28",
- "generated_at": "2026-08-28T12:25:38+08:00",
+ "generated_at": "2026-08-28T13:54:18+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
