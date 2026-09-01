@@ -1,6 +1,6 @@
 {
  "date": "2026-09-02",
- "generated_at": "2026-09-02T03:50:13+08:00",
+ "generated_at": "2026-09-02T06:46:21+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,69 +9,69 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.071,
+   "prob": 0.4353,
    "forecast_vis_km": 14.8,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "08:20",
-   "prob": 0.0497,
+   "prob": 0.332,
    "forecast_vis_km": 14.8,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "10:25",
-   "prob": 0.0537,
+   "prob": 0.2729,
    "forecast_vis_km": 4.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:15",
-   "prob": 0.0627,
+   "prob": 0.2356,
    "forecast_vis_km": 4.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:25",
-   "prob": 0.0654,
+   "prob": 0.2356,
    "forecast_vis_km": 4.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "12:25",
-   "prob": 0.0796,
+   "prob": 0.2061,
    "forecast_vis_km": 4.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:10",
-   "prob": 0.0651,
+   "prob": 0.1911,
    "forecast_vis_km": 3.7,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:20",
-   "prob": 0.0588,
+   "prob": 0.1974,
    "forecast_vis_km": 3.7,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "15:05",
-   "prob": 0.0606,
+   "prob": 0.1884,
    "forecast_vis_km": 3.7,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "16:05",
-   "prob": 0.0492,
+   "prob": 0.1822,
    "forecast_vis_km": 5.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "17:00",
-   "prob": 0.0571,
+   "prob": 0.192,
    "forecast_vis_km": 5.0,
-   "probability_source": "numerical_weather_prediction"
+   "probability_source": "RCFG_06:00_nowcast"
   }
  ],
  "conditions": {
