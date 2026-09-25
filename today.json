@@ -1,6 +1,6 @@
 {
  "date": "2026-09-25",
- "generated_at": "2026-09-25T07:18:45+08:00",
+ "generated_at": "2026-09-25T08:12:03+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -45,7 +45,7 @@
   },
   {
    "time": "13:10",
-   "prob": 0.0053,
+   "prob": 0.0052,
    "forecast_vis_km": 19.9,
    "probability_source": "numerical_weather_prediction"
   },
@@ -63,13 +63,13 @@
   },
   {
    "time": "16:05",
-   "prob": 0.0042,
+   "prob": 0.0041,
    "forecast_vis_km": 19.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "17:00",
-   "prob": 0.0048,
+   "prob": 0.0046,
    "forecast_vis_km": 19.9,
    "probability_source": "numerical_weather_prediction"
   }
