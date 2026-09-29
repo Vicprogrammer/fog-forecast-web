@@ -1,6 +1,6 @@
 {
- "date": "2026-09-29",
- "generated_at": "2026-09-29T09:23:27+08:00",
+ "date": "2026-09-30",
+ "generated_at": "2026-09-30T05:22:45+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,115 +9,115 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.0229,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.5015,
+   "forecast_vis_km": 9.2,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "08:20",
-   "prob": 0.0257,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.4626,
+   "forecast_vis_km": 9.2,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "10:25",
-   "prob": 0.0161,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.3434,
+   "forecast_vis_km": 12.7,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:15",
-   "prob": 0.0217,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.3321,
+   "forecast_vis_km": 12.7,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "11:25",
-   "prob": 0.0251,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.3268,
+   "forecast_vis_km": 12.7,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "12:25",
-   "prob": 0.0226,
-   "forecast_vis_km": 12.8,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2974,
+   "forecast_vis_km": 12.7,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:10",
-   "prob": 0.0221,
-   "forecast_vis_km": 15.3,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2606,
+   "forecast_vis_km": 15.4,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "13:20",
-   "prob": 0.0237,
-   "forecast_vis_km": 15.3,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2749,
+   "forecast_vis_km": 15.4,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "15:05",
-   "prob": 0.0328,
-   "forecast_vis_km": 15.3,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2715,
+   "forecast_vis_km": 15.4,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "16:05",
-   "prob": 0.0167,
-   "forecast_vis_km": 17.5,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2799,
+   "forecast_vis_km": 15.4,
+   "probability_source": "RCFG_06:00_nowcast"
   },
   {
    "time": "17:00",
-   "prob": 0.0168,
-   "forecast_vis_km": 17.5,
-   "probability_source": "numerical_weather_prediction"
+   "prob": 0.2987,
+   "forecast_vis_km": 15.4,
+   "probability_source": "RCFG_06:00_nowcast"
   }
  ],
  "conditions": {
-  "sst": 28.44,
-  "sst_date": "2026-09-27",
+  "sst": 28.5,
+  "sst_date": "2026-09-28",
   "sst_source": "OSTIA",
-  "rh": 89.86,
-  "wind": 4.24,
-  "td_minus_sst": -2.54
+  "rh": 90.86,
+  "wind": 1.7,
+  "td_minus_sst": -2.23
  },
  "beigan": {
   "airport": "北竿 (MFK/RCMT)",
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "method": "tdx_rcmt_logistic_nwp_proxy",
   "calibrated_probability": true,
   "slots": [
    {
     "time": "07:40",
-    "temperature_c": 27.6,
+    "temperature_c": 27.9,
     "dewpoint_c": 26.1,
-    "visibility_km": 12.94,
-    "dewpoint_spread_c": 1.47,
-    "relative_humidity_pct": 92.0,
-    "wind_speed_ms": 5.4,
-    "cloud_cover_low_pct": 3.0,
-    "probability": 0.0024
+    "visibility_km": 10.29,
+    "dewpoint_spread_c": 1.77,
+    "relative_humidity_pct": 90.0,
+    "wind_speed_ms": 4.48,
+    "cloud_cover_low_pct": 25.7,
+    "probability": 0.009
    },
    {
     "time": "14:20",
-    "temperature_c": 28.5,
+    "temperature_c": 28.4,
     "dewpoint_c": 26.1,
-    "visibility_km": 17.77,
-    "dewpoint_spread_c": 2.43,
-    "relative_humidity_pct": 86.7,
-    "wind_speed_ms": 7.22,
+    "visibility_km": 16.36,
+    "dewpoint_spread_c": 2.23,
+    "relative_humidity_pct": 87.7,
+    "wind_speed_ms": 5.91,
     "cloud_cover_low_pct": 0.0,
-    "probability": 0.0002
+    "probability": 0.0003
    },
    {
     "time": "16:15",
-    "temperature_c": 28.6,
-    "dewpoint_c": 26.0,
-    "visibility_km": 17.23,
-    "dewpoint_spread_c": 2.55,
-    "relative_humidity_pct": 86.2,
-    "wind_speed_ms": 8.03,
+    "temperature_c": 28.8,
+    "dewpoint_c": 26.1,
+    "visibility_km": 17.29,
+    "dewpoint_spread_c": 2.72,
+    "relative_humidity_pct": 85.5,
+    "wind_speed_ms": 5.56,
     "cloud_cover_low_pct": 0.0,
     "probability": 0.0002
    }
