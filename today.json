@@ -1,6 +1,6 @@
 {
  "date": "2026-10-06",
- "generated_at": "2026-10-06T07:06:59+08:00",
+ "generated_at": "2026-10-06T09:22:49+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -10,37 +10,37 @@
   {
    "time": "07:25",
    "prob": 0.0,
-   "forecast_vis_km": 7.4,
+   "forecast_vis_km": 25.2,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "08:20",
    "prob": 0.0,
-   "forecast_vis_km": 7.4,
+   "forecast_vis_km": 25.2,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "10:25",
    "prob": 0.0,
-   "forecast_vis_km": 25.2,
+   "forecast_vis_km": 28.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:15",
    "prob": 0.0001,
-   "forecast_vis_km": 25.2,
+   "forecast_vis_km": 28.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:25",
    "prob": 0.0001,
-   "forecast_vis_km": 25.2,
+   "forecast_vis_km": 28.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "12:25",
    "prob": 0.0001,
-   "forecast_vis_km": 25.2,
+   "forecast_vis_km": 28.6,
    "probability_source": "numerical_weather_prediction"
   },
   {
@@ -78,8 +78,8 @@
   "sst": 27.97,
   "sst_date": "2026-10-04",
   "sst_source": "OSTIA",
-  "rh": 60.71,
-  "wind": 11.12,
+  "rh": 60.43,
+  "wind": 11.23,
   "td_minus_sst": -12.98
  },
  "beigan": {
@@ -91,33 +91,33 @@
    {
     "time": "07:40",
     "temperature_c": 22.7,
-    "dewpoint_c": 15.6,
-    "visibility_km": 9.31,
-    "dewpoint_spread_c": 7.17,
-    "relative_humidity_pct": 64.0,
-    "wind_speed_ms": 11.76,
-    "cloud_cover_low_pct": 23.3,
-    "probability": 0.0113
+    "dewpoint_c": 15.4,
+    "visibility_km": 21.42,
+    "dewpoint_spread_c": 7.27,
+    "relative_humidity_pct": 63.7,
+    "wind_speed_ms": 11.99,
+    "cloud_cover_low_pct": 7.7,
+    "probability": 0.0
    },
    {
     "time": "14:20",
     "temperature_c": 23.2,
-    "dewpoint_c": 13.9,
-    "visibility_km": 25.52,
-    "dewpoint_spread_c": 9.23,
-    "relative_humidity_pct": 56.0,
-    "wind_speed_ms": 9.95,
+    "dewpoint_c": 13.4,
+    "visibility_km": 28.96,
+    "dewpoint_spread_c": 9.8,
+    "relative_humidity_pct": 54.0,
+    "wind_speed_ms": 10.25,
     "cloud_cover_low_pct": 0.0,
     "probability": 0.0
    },
    {
     "time": "16:15",
-    "temperature_c": 23.5,
-    "dewpoint_c": 13.6,
+    "temperature_c": 23.4,
+    "dewpoint_c": 13.1,
     "visibility_km": 28.96,
-    "dewpoint_spread_c": 9.9,
-    "relative_humidity_pct": 53.8,
-    "wind_speed_ms": 10.37,
+    "dewpoint_spread_c": 10.38,
+    "relative_humidity_pct": 52.0,
+    "wind_speed_ms": 10.75,
     "cloud_cover_low_pct": 0.0,
     "probability": 0.0
    }
