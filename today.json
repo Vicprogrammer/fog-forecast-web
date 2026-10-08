@@ -1,6 +1,6 @@
 {
  "date": "2026-10-08",
- "generated_at": "2026-10-08T08:19:38+08:00",
+ "generated_at": "2026-10-08T09:28:43+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -45,7 +45,7 @@
   },
   {
    "time": "13:10",
-   "prob": 0.0009,
+   "prob": 0.001,
    "forecast_vis_km": 25.4,
    "probability_source": "numerical_weather_prediction"
   },
@@ -79,7 +79,7 @@
   "sst_date": "2026-10-06",
   "sst_source": "OSTIA",
   "rh": 59.0,
-  "wind": 9.38,
+  "wind": 9.53,
   "td_minus_sst": -11.27
  },
  "beigan": {
@@ -95,7 +95,7 @@
     "visibility_km": 29.1,
     "dewpoint_spread_c": 10.27,
     "relative_humidity_pct": 53.3,
-    "wind_speed_ms": 9.2,
+    "wind_speed_ms": 9.21,
     "cloud_cover_low_pct": 67.7,
     "probability": 0.0
    },
@@ -106,7 +106,7 @@
     "visibility_km": 25.68,
     "dewpoint_spread_c": 8.9,
     "relative_humidity_pct": 57.7,
-    "wind_speed_ms": 9.33,
+    "wind_speed_ms": 9.28,
     "cloud_cover_low_pct": 84.7,
     "probability": 0.0
    },
@@ -117,7 +117,7 @@
     "visibility_km": 25.68,
     "dewpoint_spread_c": 8.43,
     "relative_humidity_pct": 59.0,
-    "wind_speed_ms": 8.99,
+    "wind_speed_ms": 9.54,
     "cloud_cover_low_pct": 79.0,
     "probability": 0.0
    }
