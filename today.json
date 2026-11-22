@@ -1,6 +1,6 @@
 {
  "date": "2026-11-22",
- "generated_at": "2026-11-22T08:35:09+08:00",
+ "generated_at": "2026-11-22T09:51:15+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -64,13 +64,13 @@
   {
    "time": "16:05",
    "prob": 0.0002,
-   "forecast_vis_km": 11.7,
+   "forecast_vis_km": 25.8,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "17:00",
    "prob": 0.0002,
-   "forecast_vis_km": 11.7,
+   "forecast_vis_km": 25.8,
    "probability_source": "numerical_weather_prediction"
   }
  ],
@@ -103,7 +103,7 @@
     "time": "14:20",
     "temperature_c": 17.4,
     "dewpoint_c": 9.9,
-    "visibility_km": 27.64,
+    "visibility_km": 28.4,
     "dewpoint_spread_c": 7.57,
     "relative_humidity_pct": 61.3,
     "wind_speed_ms": 9.26,
@@ -114,12 +114,12 @@
     "time": "16:15",
     "temperature_c": 17.8,
     "dewpoint_c": 11.1,
-    "visibility_km": 17.49,
+    "visibility_km": 28.4,
     "dewpoint_spread_c": 6.6,
     "relative_humidity_pct": 65.8,
     "wind_speed_ms": 9.11,
     "cloud_cover_low_pct": 25.8,
-    "probability": 0.0001
+    "probability": 0.0
    }
   ],
   "disclaimer": "模型依歷史取消與航班時段機場實況建立；實際提前預報仍受數值天氣預報誤差影響，僅供參考。不是機場官方關場決策或公告。"
