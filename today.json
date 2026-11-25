@@ -1,6 +1,6 @@
 {
- "date": "2026-11-24",
- "generated_at": "2026-11-24T13:42:28+08:00",
+ "date": "2026-11-25",
+ "generated_at": "2026-11-25T09:19:36+08:00",
  "airport": "南竿 (LZN/RCFG)",
  "threshold_km": 3.2,
  "prediction_target": "closure_risk_using_low_visibility_weather_proxy",
@@ -9,116 +9,116 @@
  "slots": [
   {
    "time": "07:25",
-   "prob": 0.0233,
-   "forecast_vis_km": 3.8,
+   "prob": 0.0,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "08:20",
-   "prob": 0.0188,
-   "forecast_vis_km": 3.8,
+   "prob": 0.0,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "10:25",
-   "prob": 0.0031,
-   "forecast_vis_km": 3.6,
+   "prob": 0.0,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:15",
-   "prob": 0.0043,
-   "forecast_vis_km": 3.6,
+   "prob": 0.0001,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "11:25",
-   "prob": 0.0044,
-   "forecast_vis_km": 3.6,
+   "prob": 0.0001,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "12:25",
-   "prob": 0.0036,
-   "forecast_vis_km": 3.6,
+   "prob": 0.0001,
+   "forecast_vis_km": 27.9,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "13:10",
-   "prob": 0.0023,
+   "prob": 0.0005,
    "forecast_vis_km": 25.7,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "13:20",
-   "prob": 0.0025,
+   "prob": 0.0006,
    "forecast_vis_km": 25.7,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "15:05",
-   "prob": 0.0019,
+   "prob": 0.0005,
    "forecast_vis_km": 25.7,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "16:05",
-   "prob": 0.0004,
+   "prob": 0.0002,
    "forecast_vis_km": 25.7,
    "probability_source": "numerical_weather_prediction"
   },
   {
    "time": "17:00",
-   "prob": 0.0004,
+   "prob": 0.0002,
    "forecast_vis_km": 25.7,
    "probability_source": "numerical_weather_prediction"
   }
  ],
  "conditions": {
-  "sst": 21.52,
-  "sst_date": "2026-11-22",
+  "sst": 21.37,
+  "sst_date": "2026-11-23",
   "sst_source": "OSTIA",
-  "rh": 83.71,
-  "wind": 10.54,
-  "td_minus_sst": -6.55
+  "rh": 57.14,
+  "wind": 12.03,
+  "td_minus_sst": -14.56
  },
  "beigan": {
   "airport": "北竿 (MFK/RCMT)",
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "method": "tdx_rcmt_logistic_nwp_proxy",
   "calibrated_probability": true,
   "slots": [
    {
     "time": "07:40",
-    "temperature_c": 16.9,
-    "dewpoint_c": 12.0,
-    "visibility_km": 4.08,
-    "dewpoint_spread_c": 4.87,
-    "relative_humidity_pct": 73.0,
-    "wind_speed_ms": 11.93,
-    "cloud_cover_low_pct": 98.7,
-    "probability": 0.7896
+    "temperature_c": 15.0,
+    "dewpoint_c": 7.0,
+    "visibility_km": 28.21,
+    "dewpoint_spread_c": 7.97,
+    "relative_humidity_pct": 59.0,
+    "wind_speed_ms": 11.51,
+    "cloud_cover_low_pct": 6.7,
+    "probability": 0.0
    },
    {
     "time": "14:20",
-    "temperature_c": 16.7,
-    "dewpoint_c": 10.9,
-    "visibility_km": 26.0,
-    "dewpoint_spread_c": 5.83,
-    "relative_humidity_pct": 68.3,
-    "wind_speed_ms": 12.09,
-    "cloud_cover_low_pct": 13.7,
+    "temperature_c": 15.4,
+    "dewpoint_c": 7.9,
+    "visibility_km": 28.18,
+    "dewpoint_spread_c": 7.47,
+    "relative_humidity_pct": 61.7,
+    "wind_speed_ms": 8.55,
+    "cloud_cover_low_pct": 74.0,
     "probability": 0.0
    },
    {
     "time": "16:15",
-    "temperature_c": 16.9,
-    "dewpoint_c": 10.8,
-    "visibility_km": 26.0,
-    "dewpoint_spread_c": 6.12,
-    "relative_humidity_pct": 67.5,
-    "wind_speed_ms": 11.27,
-    "cloud_cover_low_pct": 0.8,
+    "temperature_c": 15.3,
+    "dewpoint_c": 8.3,
+    "visibility_km": 27.61,
+    "dewpoint_spread_c": 6.95,
+    "relative_humidity_pct": 63.5,
+    "wind_speed_ms": 8.21,
+    "cloud_cover_low_pct": 53.8,
     "probability": 0.0
    }
   ],
